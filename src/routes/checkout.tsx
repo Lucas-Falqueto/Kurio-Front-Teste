@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import { ShoppingCart, Trash2 } from 'lucide-react'
-
+import { toast } from 'sonner'
 import { apiClient } from '@/api/client'
 import { useQuery } from '@tanstack/react-query'
 import { fetchNFTDetail } from '@/features/nfts/api/nftApi'
@@ -115,7 +115,15 @@ function CheckoutRoute() {
                   value={couponCode} 
                   onChange={(e) => setCouponCode(e.target.value)} 
                 />
-                <Button variant="secondary" onClick={() => applyCoupon(couponCode)}>Aplicar</Button>
+                <Button variant="secondary" onClick={() => applyCoupon(couponCode, {
+                  onSuccess: () => {
+                    if (couponCode) toast.success('Cupom aplicado com sucesso!')
+                    else toast.success('Cupom removido!')
+                  },
+                  onError: (error: any) => {
+                    toast.error(error.response?.data?.message || 'Cupom inválido ou expirado.')
+                  }
+                })}>Aplicar</Button>
             </div>
 
             <Button 
