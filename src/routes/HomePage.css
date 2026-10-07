@@ -1,0 +1,5244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --kurio-bg: #140d0a;
+  --kurio-card: #241612;
+  --kurio-elevated: #38220f;
+  --kurio-primary: #d28a4c;
+  --kurio-accent: #e89b55;
+  --kurio-ink: #f5f1eb;
+  --kurio-secondary: #cfb28c;
+  --kurio-muted: #b39463;
+  --kurio-border: #3f2319;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+.market-header,
+.market-footer,
+.home-page {
+  color: var(--kurio-ink);
+  font-family: 'Roboto Mono', monospace;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--kurio-bg);
+  color: var(--kurio-ink);
+}
+
+.app-main {
+  flex: 1;
+}
+
+.market-header {
+  width: min(1200px, calc(100% - 48px));
+  margin: 24px auto 0;
+  position: relative;
+  z-index: 5;
+}
+
+.header-inner {
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.brand {
+  color: var(--kurio-ink);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-decoration: none;
+}
+
+.main-nav,
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav {
+  gap: 40px;
+  height: 45px;
+}
+
+.main-nav a {
+  color: var(--kurio-ink);
+  font-size: 14px;
+  line-height: 40px;
+  text-decoration: none;
+  position: relative;
+}
+
+.main-nav a.active {
+  color: var(--kurio-accent);
+  font-weight: 700;
+}
+
+.main-nav a.active::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--kurio-primary);
+}
+
+.header-actions {
+  gap: 24px;
+}
+
+.icon-button {
+  width: 28px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--kurio-ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.cart-link {
+  color: var(--kurio-ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.cart-symbol {
+  font-size: 23px;
+  line-height: 1;
+  transform: rotate(180deg);
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -9px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font-size: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.login-button,
+.button-primary {
+  border: 0;
+  border-radius: 6px;
+  background: var(--kurio-primary);
+  color: var(--kurio-bg);
+  font: 700 14px 'Roboto Mono', monospace;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.login-button {
+  height: 35px;
+  min-width: 100px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.login-button span {
+  font-size: 18px;
+}
+
+.header-rule {
+  height: 1px;
+  margin-top: 9px;
+  background: rgba(207, 178, 140, .28);
+}
+
+.header-search {
+  position: absolute;
+  right: 160px;
+  top: 52px;
+  width: 250px;
+  padding: 11px 14px;
+  border: 1px solid var(--kurio-border);
+  border-radius: 6px;
+  color: var(--kurio-ink);
+  background: var(--kurio-card);
+  font: 12px 'Roboto Mono', monospace;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.header-search:focus {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  outline: 1px solid var(--kurio-primary);
+}
+
+.home-page {
+  width: min(1200px, calc(100% - 48px));
+  margin: 32px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}
+
+.home-hero {
+  min-height: 450px;
+  background: radial-gradient(ellipse at 86% 45%, rgba(210, 138, 76, .12), transparent 37%), #17100c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.hero-copy {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  color: var(--kurio-ink);
+  letter-spacing: 1.4px;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 9px;
+}
+
+.hero-copy h1 {
+  color: var(--kurio-ink);
+  font-size: 43px;
+  line-height: 1.63;
+  letter-spacing: -1.3px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.hero-description {
+  color: var(--kurio-secondary);
+  max-width: 557px;
+  font-size: 14px;
+  line-height: 24px;
+  margin: 10px 0 20px;
+}
+
+.hero-cta {
+  width: 140px;
+  height: 40px;
+}
+
+.hero-dots {
+  align-self: flex-end;
+  display: flex;
+  gap: 4px;
+  margin-top: 37px;
+}
+
+.hero-dots span {
+  width: 5px;
+  height: 5px;
+  background: var(--kurio-primary);
+  border-radius: 50%;
+}
+
+.hero-art {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.marketplace {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.market-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.filter-panel {
+  background: var(--kurio-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+}
+
+.filter-panel h2 {
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--kurio-ink);
+  margin: 0;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: -28px;
+  padding: 0 12px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--kurio-secondary);
+  font: 400 14px/40px 'Roboto Mono', monospace;
+  text-align: left;
+  cursor: pointer;
+}
+
+.filter-option:hover,
+.filter-option.selected {
+  color: var(--kurio-accent);
+}
+
+.nft-grid-favorite {
+  display: none;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-group>p {
+  color: var(--kurio-ink);
+  margin: 0;
+  padding-left: 12px;
+  font-size: 13px;
+}
+
+.price-range-control {
+  height: 28px;
+  margin: 2px 12px 0;
+  position: relative;
+  touch-action: pan-y;
+}
+
+.price-range-track {
+  position: absolute;
+  top: 13px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--kurio-muted);
+}
+
+.price-range-control input[type="range"] {
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.price-range-control input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: transparent;
+}
+
+.price-range-control input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: transparent;
+}
+
+.price-range-control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  margin-top: -6px;
+  border: 3px solid #f5c17e;
+  border-radius: 50%;
+  background: var(--kurio-primary);
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.price-range-control input[type="range"]::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  border: 3px solid #f5c17e;
+  border-radius: 50%;
+  background: var(--kurio-primary);
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.mobile-filter-close {
+  display: none;
+}
+
+.filter-apply {
+  align-self: flex-start;
+  margin-left: 12px;
+  padding: 5px 12px;
+  height: 30px;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font: 700 13px 'Roboto Mono', monospace;
+}
+
+.network-filter {
+  gap: 5px;
+}
+
+.network-filter .filter-option {
+  padding-left: 12px;
+}
+
+.featured-nft {
+  height: 470px;
+  background: linear-gradient(180deg, rgba(210, 138, 76, .1), rgba(210, 138, 76, .03));
+  padding: 24px 0 4px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.featured-title {
+  color: var(--kurio-accent);
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 32px;
+  margin: 0 20px 12px;
+  text-align: left;
+}
+
+.featured-subtitle {
+  color: var(--kurio-ink);
+  font-weight: 700;
+  font-size: 19px;
+  margin: 0 10px 16px;
+}
+
+.featured-nft img {
+  display: block;
+  width: 100%;
+  height: 368px;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+.product-area {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.catalog-toolbar {
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+}
+
+.catalog-tabs {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.catalog-tabs button {
+  border: 0;
+  padding: 0 0 7px;
+  color: var(--kurio-ink);
+  background: transparent;
+  font: 500 13px 'Roboto Mono', monospace;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.catalog-tabs button.active {
+  color: var(--kurio-accent);
+  border-bottom: 2px solid var(--kurio-primary);
+}
+
+.sort-control {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--kurio-ink);
+  font-size: 12px;
+  white-space: nowrap;
+  position: relative;
+}
+
+.sort-control select {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0 20px 0 0;
+  color: var(--kurio-ink);
+  font: 12px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.sort-control option {
+  background: var(--kurio-card);
+}
+
+.sort-control svg {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 34px;
+  row-gap: 72px;
+}
+
+.nft-card {
+  min-width: 0;
+  color: var(--kurio-ink);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nft-image {
+  background: var(--kurio-card);
+  height: 300px;
+  padding: 24px 4px;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.nft-card:nth-child(1) .nft-image {
+  padding-top: 31px;
+}
+
+.nft-card:nth-child(4) .nft-image {
+  padding: 6px 20px 8px;
+}
+
+.nft-image img {
+  width: 250px;
+  height: 250px;
+  max-width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+
+.nft-card:hover .nft-image img {
+  transform: scale(1.04);
+}
+
+.nft-name {
+  font-size: 14px;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nft-price {
+  color: var(--kurio-accent);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.nft-price strong {
+  font-weight: 700;
+}
+
+.nft-price del {
+  color: var(--kurio-muted);
+  font-size: 13px;
+}
+
+.nft-skeleton {
+  height: 356px;
+  background: linear-gradient(90deg, var(--kurio-card) 25%, #38251b 50%, var(--kurio-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.empty-catalog {
+  grid-column: 1/-1;
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--kurio-secondary);
+}
+
+.pagination {
+  display: flex;
+  align-self: flex-end;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.pagination button {
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--kurio-border);
+  border-radius: 4px;
+  color: var(--kurio-ink);
+  background: transparent;
+  font: 13px 'Roboto Mono', monospace;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.pagination button.current {
+  background: var(--kurio-primary);
+  color: var(--kurio-bg);
+  border-color: var(--kurio-primary);
+  font-weight: 700;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.promo-card {
+  min-height: 250px;
+  background: var(--kurio-card);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.promo-card>img {
+  width: 50%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.promo-card>div {
+  flex: 1;
+  padding: 22px 28px 22px 8px;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+.promo-card h2 {
+  font-size: 17px;
+  line-height: 24px;
+  margin: 0 0 10px;
+}
+
+.promo-card p {
+  color: var(--kurio-secondary);
+  font-size: 12px;
+  line-height: 22px;
+  margin: 0 0 18px;
+}
+
+.promo-card .button-primary {
+  height: 40px;
+  width: 140px;
+  font-size: 13px;
+}
+
+.promo-genesis::after,
+.promo-curated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 7% 100%, rgba(210, 138, 76, .2), transparent 30%);
+}
+
+.journal {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section-heading {
+  text-align: center;
+}
+
+.section-heading h2 {
+  font-size: 26px;
+  line-height: 36px;
+  margin: 0 0 7px;
+}
+
+.section-heading p {
+  color: var(--kurio-secondary);
+  font-size: 12px;
+  margin: 0;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.story-card {
+  background: var(--kurio-card);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-card>img {
+  width: 100%;
+  height: 195px;
+  object-fit: cover;
+}
+
+.story-content {
+  padding: 12px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+}
+
+.story-date {
+  color: var(--kurio-secondary);
+  font-size: 10px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.story-content h3 {
+  color: var(--kurio-ink);
+  font-size: 13px;
+  line-height: 19px;
+  margin: 0;
+}
+
+.story-summary {
+  color: var(--kurio-secondary);
+  font-size: 10px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.story-content a {
+  margin-top: auto;
+  color: var(--kurio-accent);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.market-footer {
+  width: min(1200px, calc(100% - 48px));
+  margin: 96px auto 0;
+  background: var(--kurio-card);
+}
+
+.footer-benefits {
+  min-height: 250px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.35fr;
+  gap: 22px;
+}
+
+.benefit {
+  padding: 0 8px;
+}
+
+.benefit+.benefit {
+  border-left: 1px solid var(--kurio-primary);
+  padding-left: 24px;
+}
+
+.benefit>span {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.benefit h3,
+.newsletter h3 {
+  color: var(--kurio-ink);
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+
+.benefit p,
+.newsletter p {
+  color: var(--kurio-secondary);
+  font-size: 11px;
+  line-height: 19px;
+  margin: 0;
+}
+
+.newsletter {
+  border-left: 1px solid var(--kurio-primary);
+  padding: 10px 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.newsletter>div {
+  display: flex;
+  height: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--kurio-elevated);
+}
+
+.newsletter input {
+  color: var(--kurio-ink);
+  background: transparent;
+  border: 0;
+  outline: none;
+  padding: 0 12px;
+  min-width: 0;
+  flex: 1;
+  font: 11px 'Roboto Mono', monospace;
+}
+
+.newsletter input::placeholder {
+  color: var(--kurio-muted);
+}
+
+.newsletter button {
+  width: 84px;
+  border: 0;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font: 700 13px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.footer-brand-band {
+  min-height: 88px;
+  padding: 16px 32px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  gap: 25px;
+  background: var(--kurio-elevated);
+}
+
+.footer-brand-band strong {
+  letter-spacing: 1.4px;
+  font-size: 14px;
+}
+
+.footer-brand-band span,
+.footer-brand-band a {
+  color: var(--kurio-ink);
+  font-size: 11px;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.footer-links {
+  padding: 26px 32px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
+}
+
+.footer-links section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-links h3 {
+  color: var(--kurio-ink);
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.footer-links a {
+  color: var(--kurio-ink);
+  font-size: 11px;
+  line-height: 23px;
+  text-decoration: none;
+}
+
+.social-links>div {
+  display: flex;
+  gap: 8px;
+  margin: 2px 0 8px;
+}
+
+.social-links>div a {
+  border: 1px solid var(--kurio-muted);
+  border-radius: 3px;
+  width: 22px;
+  height: 22px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.social-links small {
+  color: var(--kurio-accent);
+  font-size: 7px;
+}
+
+.copyright {
+  border-top: 1px solid rgba(207, 178, 140, .2);
+  padding: 12px;
+  color: var(--kurio-secondary);
+  text-align: center;
+  font-size: 9px;
+}
+
+@media (max-width: 1050px) {
+
+  .market-header,
+  .home-page,
+  .market-footer {
+    width: min(100% - 40px, 820px);
+  }
+
+  .home-page {
+    gap: 64px;
+  }
+
+  .home-hero {
+    min-height: 390px;
+    padding: 28px;
+  }
+
+  .hero-copy {
+    max-width: 55%;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(30px, 4vw, 40px);
+    line-height: 1.45;
+  }
+
+  .hero-art {
+    width: min(42%, 380px);
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .marketplace {
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .filter-panel {
+    padding: 16px;
+  }
+
+  .featured-nft {
+    height: 380px;
+  }
+
+  .featured-nft img {
+    height: 280px;
+  }
+
+  .nft-grid {
+    column-gap: 16px;
+    row-gap: 40px;
+  }
+
+  .nft-image {
+    height: auto;
+    aspect-ratio: .86;
+  }
+
+  .nft-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .promo-grid {
+    gap: 16px;
+  }
+
+  .promo-card>img {
+    width: 45%;
+  }
+
+  .promo-card>div {
+    padding-right: 16px;
+  }
+
+  .story-grid {
+    gap: 14px;
+  }
+
+  .story-card>img {
+    height: 150px;
+  }
+
+  .footer-benefits {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .newsletter {
+    grid-column: 1 / -1;
+    border-left: 0;
+    border-top: 1px solid var(--kurio-primary);
+    padding: 18px 8px 0;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .market-header,
+  .home-page,
+  .market-footer {
+    width: calc(100% - 32px);
+  }
+
+  .market-header {
+    margin-top: 14px;
+  }
+
+  .header-inner {
+    min-height: 44px;
+  }
+
+  .brand {
+    font-size: 12px;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 16px;
+  }
+
+  .header-actions .icon-button {
+    width: 24px;
+  }
+
+  .login-button {
+    min-width: 78px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .home-page {
+    margin-top: 22px;
+    gap: 48px;
+  }
+
+  .home-hero {
+    min-height: 0;
+    padding: 26px 20px 22px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 18px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(210, 138, 76, .10), transparent 42%), rgba(23, 16, 12, 0.92);
+    border-radius: 18px;
+  }
+
+  .hero-art {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.12;
+    border-radius: 16px;
+    object-position: center 36%;
+  }
+
+  .hero-copy {
+    max-width: none;
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    margin-bottom: 7px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(25px, 7vw, 34px);
+    line-height: 1.4;
+    letter-spacing: -1px;
+  }
+
+  .hero-description {
+    font-size: 12px;
+    line-height: 20px;
+    margin: 8px 0 16px;
+  }
+
+  .hero-cta {
+    width: 126px;
+    height: 38px;
+    font-size: 12px;
+  }
+
+  .hero-dots {
+    display: none;
+  }
+
+  .marketplace {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .market-sidebar {
+    width: 100%;
+  }
+
+  .filter-panel {
+    gap: 18px;
+  }
+
+  .filter-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 18px;
+    margin-top: -8px;
+  }
+
+  .filter-option {
+    font-size: 11px;
+    line-height: 31px;
+  }
+
+  .filter-group h2 {
+    font-size: 15px;
+  }
+
+  .network-filter {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .featured-nft {
+    display: none;
+  }
+
+  .product-area {
+    width: 100%;
+    gap: 20px;
+  }
+
+  .catalog-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .catalog-tabs {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .catalog-tabs button {
+    font-size: 10px;
+  }
+
+  .sort-control {
+    align-self: flex-end;
+  }
+
+  .nft-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 22px;
+  }
+
+  .nft-card {
+    gap: 7px;
+  }
+
+  .nft-image {
+    height: auto;
+    aspect-ratio: 1;
+    padding: 8px;
+  }
+
+  .nft-image img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+  }
+
+  .nft-name {
+    font-size: 10px;
+  }
+
+  .nft-price {
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .nft-price del {
+    font-size: 9px;
+  }
+
+  .nft-skeleton {
+    height: auto;
+    aspect-ratio: .8;
+  }
+
+  .pagination {
+    align-self: center;
+  }
+
+  .pagination button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .promo-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .promo-card {
+    min-height: 170px;
+  }
+
+  .promo-card>img {
+    height: 170px;
+    width: 43%;
+  }
+
+  .promo-card>div {
+    padding: 12px;
+  }
+
+  .promo-card h2 {
+    font-size: 12px;
+    line-height: 17px;
+    margin-bottom: 6px;
+  }
+
+  .promo-card p {
+    font-size: 9px;
+    line-height: 14px;
+    margin-bottom: 10px;
+  }
+
+  .promo-card .button-primary {
+    width: 100px;
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .journal {
+    gap: 22px;
+  }
+
+  .section-heading h2 {
+    font-size: 20px;
+  }
+
+  .section-heading p {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .story-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .story-card>img {
+    height: auto;
+    aspect-ratio: 1.38;
+  }
+
+  .story-content {
+    padding: 9px;
+    gap: 7px;
+  }
+
+  .story-date,
+  .story-summary,
+  .story-content a {
+    font-size: 8px;
+  }
+
+  .story-content h3 {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .market-footer {
+    margin-top: 48px;
+  }
+
+  .footer-benefits {
+    padding: 20px 16px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .benefit,
+  .benefit+.benefit {
+    border: 0;
+    border-bottom: 1px solid rgba(210, 138, 76, .45);
+    padding: 0 0 16px;
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    column-gap: 12px;
+  }
+
+  .benefit>span {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+    grid-row: span 2;
+    margin: 0;
+  }
+
+  .benefit h3 {
+    align-self: end;
+    font-size: 12px;
+  }
+
+  .benefit p {
+    font-size: 10px;
+  }
+
+  .newsletter {
+    padding: 4px 0 0;
+    gap: 10px;
+  }
+
+  .newsletter h3 {
+    font-size: 13px;
+  }
+
+  .footer-brand-band {
+    padding: 18px 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .footer-brand-band span,
+  .footer-brand-band a {
+    font-size: 9px;
+  }
+
+  .footer-links {
+    padding: 22px 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 14px;
+  }
+
+  .footer-links h3 {
+    font-size: 12px;
+  }
+
+  .footer-links a {
+    font-size: 9px;
+    line-height: 20px;
+  }
+
+  .social-links small {
+    font-size: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* Shared visual language for the remaining Figma screens */
+.marketplace-screen {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 56px 0 84px;
+  box-sizing: border-box;
+  color: var(--kurio-ink);
+  font-family: 'Roboto Mono', monospace;
+}
+
+.screen-heading {
+  margin-bottom: 36px;
+}
+
+.screen-heading>p,
+.confirmation-heading>p:first-child {
+  color: var(--kurio-accent);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.screen-heading h1 {
+  font-size: 32px;
+  line-height: 1.3;
+  margin: 0 0 10px;
+}
+
+.screen-heading>span {
+  color: var(--kurio-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.screen-skeleton {
+  height: 460px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--kurio-card) 25%, #38251b 50%, var(--kurio-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+.not-found-page {
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.not-found-page h1 {
+  font-size: 30px;
+}
+
+.not-found-page p {
+  color: var(--kurio-secondary);
+}
+
+.nft-detail-page {
+  min-height: 650px;
+  padding-top: 24px;
+  padding-bottom: 32px;
+}
+
+.app-shell:has(.nft-detail-page) .market-footer {
+  margin-top: 48px;
+}
+
+.nft-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--kurio-muted);
+  font-size: 10px;
+  text-transform: capitalize;
+}
+
+.nft-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--kurio-secondary);
+  text-decoration: none;
+}
+
+.nft-breadcrumb a:hover {
+  color: var(--kurio-accent);
+}
+
+.nft-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.nft-gallery {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.nft-thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nft-thumbnails button {
+  width: 46px;
+  aspect-ratio: 1;
+  padding: 2px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: var(--kurio-card);
+  cursor: pointer;
+}
+
+.nft-thumbnails button.active {
+  border-color: var(--kurio-primary);
+}
+
+.nft-thumbnails img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.nft-artwork-panel {
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--kurio-card);
+}
+
+.nft-main-artwork {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform .2s ease;
+}
+
+.nft-artwork-panel.is-zoomed .nft-main-artwork {
+  transform: scale(1.12);
+}
+
+.artwork-zoom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(245, 241, 235, .35);
+  border-radius: 50%;
+  color: var(--kurio-ink);
+  background: rgba(20, 13, 10, .72);
+  cursor: pointer;
+}
+
+.nft-information {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 9px;
+}
+
+.nft-title-row {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nft-category {
+  flex: none;
+  color: var(--kurio-secondary);
+  text-transform: uppercase;
+  font-size: 8px;
+  letter-spacing: .6px;
+  padding-top: 4px;
+}
+
+.nft-information h1 {
+  color: var(--kurio-ink);
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.nft-price-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.nft-price-rating>strong {
+  color: var(--kurio-accent);
+  font-size: 17px;
+}
+
+.nft-price-rating>span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.nft-stars {
+  color: var(--kurio-accent);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.nft-price-rating small {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+}
+
+.nft-overview h2 {
+  color: var(--kurio-ink);
+  font-size: 10px;
+  margin: 0 0 5px;
+}
+
+.nft-overview p {
+  color: var(--kurio-secondary);
+  font-size: 9px;
+  line-height: 1.6;
+  margin: 0 0 4px;
+}
+
+.nft-edition {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--kurio-ink);
+  font-size: 8px;
+}
+
+.nft-edition>div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nft-edition button {
+  min-width: 24px;
+  height: 20px;
+  padding: 0 6px;
+  border: 1px solid var(--kurio-border);
+  border-radius: 12px;
+  color: var(--kurio-secondary);
+  background: transparent;
+  font: 8px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.nft-edition button.selected {
+  color: var(--kurio-bg);
+  border-color: var(--kurio-primary);
+  background: var(--kurio-primary);
+}
+
+.nft-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.nft-quantity {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 30px;
+  color: var(--kurio-ink);
+}
+
+.nft-quantity button {
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  cursor: pointer;
+}
+
+.nft-quantity button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.nft-quantity span {
+  min-width: 11px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.nft-add-button {
+  flex: 1;
+  height: 31px;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font: 700 9px 'Roboto Mono', monospace;
+}
+
+.nft-favorite-button {
+  height: 31px;
+  padding: 0 8px;
+  color: var(--kurio-accent);
+  background: transparent;
+  border-color: var(--kurio-primary);
+  font: 8px 'Roboto Mono', monospace;
+  gap: 4px;
+}
+
+.nft-favorite-button.is-favorite {
+  background: rgba(210, 138, 76, .12);
+}
+
+.nft-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--kurio-secondary);
+  font-size: 8px;
+}
+
+.nft-facts p {
+  margin: 0;
+}
+
+.nft-facts strong {
+  color: var(--kurio-ink);
+  font-weight: 500;
+}
+
+.nft-facts>div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nft-facts button {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  color: var(--kurio-ink);
+  background: transparent;
+  cursor: pointer;
+}
+
+.nft-feedback {
+  color: var(--kurio-accent);
+  font-size: 10px;
+  margin: 0;
+}
+
+.nft-feedback.nft-error {
+  color: #ff9b88;
+}
+
+.nft-detail-tabs {
+  margin-top: 48px;
+}
+
+.nft-tab-list {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-bottom: 1px solid var(--kurio-border);
+}
+
+.nft-tab-list button {
+  position: relative;
+  padding: 0 0 8px;
+  border: 0;
+  color: var(--kurio-secondary);
+  background: transparent;
+  font: 9px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.nft-tab-list button.active {
+  color: var(--kurio-accent);
+  font-weight: 700;
+}
+
+.nft-tab-list button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--kurio-primary);
+}
+
+.nft-detail-copy {
+  padding-top: 12px;
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  line-height: 1.7;
+}
+
+.nft-detail-copy p {
+  margin: 0 0 10px;
+}
+
+.nft-detail-copy strong {
+  color: var(--kurio-ink);
+}
+
+.nft-review-panel {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 8px 20px;
+  padding: 14px 0;
+  color: var(--kurio-secondary);
+  font-size: 9px;
+}
+
+.nft-review-panel>div {
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.nft-review-panel>div strong {
+  color: var(--kurio-ink);
+  font-size: 18px;
+}
+
+.nft-review-panel small,
+.nft-review-panel p span {
+  color: var(--kurio-muted);
+  font-size: 8px;
+}
+
+.nft-review-panel p {
+  margin: 0;
+}
+
+.nft-review-panel p strong {
+  color: var(--kurio-ink);
+}
+
+.nft-collection-section {
+  margin-top: 48px;
+}
+
+.nft-collection-section h2 {
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--kurio-border);
+  color: var(--kurio-accent);
+  font-size: 10px;
+}
+
+.nft-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.nft-collection-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--kurio-ink);
+  text-decoration: none;
+  font-size: 8px;
+}
+
+.nft-collection-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: var(--kurio-card);
+}
+
+.nft-collection-card strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.nft-collection-card span {
+  color: var(--kurio-accent);
+}
+
+.nft-collection-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.nft-collection-pagination button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid var(--kurio-primary);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nft-collection-pagination button.active {
+  background: var(--kurio-primary);
+}
+
+.nft-collection-pagination button:focus-visible {
+  outline: 2px solid var(--kurio-accent);
+  outline-offset: 3px;
+}
+
+.cart-page {
+  min-height: 540px;
+}
+
+.app-shell:has(.cart-page) .market-footer {
+  margin-top: 32px;
+}
+
+.app-shell:has(.payment-page) .market-footer {
+  margin-top: 84px;
+}
+
+.cart-page .nft-breadcrumb,
+.payment-page .nft-breadcrumb {
+  margin-bottom: 18px;
+}
+
+.cart-screen-heading,
+.payment-screen-heading {
+  margin-bottom: 22px;
+}
+
+.cart-screen-heading>p,
+.payment-screen-heading>p {
+  font-size: 9px;
+  margin-bottom: 7px;
+}
+
+.cart-screen-heading h1,
+.payment-screen-heading h1 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(300px, .8fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.cart-items-panel,
+.cart-summary,
+.payment-form,
+.payment-summary,
+.receipt-card,
+.profile-sidebar,
+.profile-form-card {
+  background: var(--kurio-card);
+  border: 1px solid var(--kurio-border);
+  border-radius: 8px;
+}
+
+.cart-items-panel {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.cart-table-heading {
+  min-height: 35px;
+  display: grid;
+  grid-template-columns: 38px minmax(90px, 1fr) 70px 78px 78px 24px;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--kurio-border);
+  color: var(--kurio-secondary);
+  font-size: 9px;
+}
+
+.cart-table-heading span:first-child {
+  grid-column: 1 / 3;
+}
+
+.cart-table-heading span:not(:first-child) {
+  text-align: center;
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-line {
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 50px minmax(90px, 1fr) 70px 78px 78px 24px;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  margin-bottom: 4px;
+  border: 0;
+  background: var(--kurio-card);
+}
+
+.cart-line:last-child {
+  margin-bottom: 0;
+}
+
+.cart-line>img {
+  grid-column: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cart-line-description {
+  grid-column: 2;
+}
+
+.cart-line-description h4 {
+  color: var(--kurio-ink);
+  font-size: 9px;
+  margin: 0 0 3px;
+}
+
+.cart-line-description p {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  margin: 0;
+}
+
+.cart-unit-price {
+  grid-column: 3;
+  color: var(--kurio-ink);
+  font-size: 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.cart-line .cart-quantity {
+  grid-column: 4;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--kurio-ink);
+}
+
+.cart-quantity button {
+  width: 19px;
+  height: 19px;
+  min-width: 19px;
+  padding: 0;
+  color: var(--kurio-accent);
+  border-color: var(--kurio-border);
+  background: var(--kurio-elevated);
+}
+
+.cart-line-total {
+  grid-column: 5;
+  color: var(--kurio-accent);
+  font-size: 9px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.cart-remove-button {
+  grid-column: 6;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  color: var(--kurio-muted);
+}
+
+.cart-remove-button:hover {
+  color: #e78d7b;
+  background: transparent;
+}
+
+.cart-summary,
+.payment-summary {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.cart-summary h2,
+.payment-summary h2 {
+  font-size: 12px;
+  margin: 0 0 13px;
+}
+
+.summary-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 9px;
+}
+
+.summary-line,
+.summary-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.summary-line>span:first-child {
+  color: var(--kurio-secondary);
+}
+
+.discount-line {
+  color: #80bd82;
+}
+
+.summary-total {
+  border-top: 1px solid var(--kurio-border);
+  padding-top: 10px;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.summary-total>span:last-child,
+.summary-total strong {
+  color: var(--kurio-accent);
+}
+
+.coupon-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.coupon-row input {
+  height: 30px;
+  font-size: 9px;
+}
+
+.coupon-row input,
+.payment-form input,
+.payment-form select {
+  min-width: 0;
+  color: var(--kurio-ink);
+  background: var(--kurio-bg);
+  border: 1px solid var(--kurio-border);
+  border-radius: 5px;
+}
+
+.coupon-row button {
+  height: 30px;
+  padding: 0 9px;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font-size: 9px;
+}
+
+.continue-payment-button,
+.confirm-payment-button {
+  width: 100%;
+  height: 34px;
+  margin-top: 12px;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font: 700 9px 'Roboto Mono', monospace;
+}
+
+.continue-shopping-button {
+  width: 100%;
+  height: 28px;
+  margin-top: 6px;
+  color: var(--kurio-secondary);
+  border-color: var(--kurio-border);
+  background: transparent;
+  font: 8px 'Roboto Mono', monospace;
+}
+
+.secure-checkout-note,
+.payment-quote-note {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  line-height: 1.6;
+  text-align: center;
+  margin: 8px 0 0;
+}
+
+.cart-recommendations {
+  margin-top: 38px;
+}
+
+.cart-recommendations h2 {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--kurio-border);
+  color: var(--kurio-accent);
+  font-size: 10px;
+}
+
+.cart-recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cart-recommendation {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--kurio-ink);
+  text-decoration: none;
+  font-size: 8px;
+}
+
+.cart-recommendation img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: var(--kurio-card);
+}
+
+.cart-recommendation strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.cart-recommendation span {
+  color: var(--kurio-accent);
+}
+
+.cart-empty-state {
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.empty-cart-icon {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--kurio-accent);
+  background: var(--kurio-card);
+  margin-bottom: 18px;
+}
+
+.cart-empty-state h1 {
+  font-size: 26px;
+  margin: 0 0 10px;
+}
+
+.cart-empty-state p {
+  color: var(--kurio-secondary);
+  font-size: 13px;
+  margin: 0 0 24px;
+}
+
+.payment-page {
+  min-height: 600px;
+}
+
+.payment-page {
+  padding-top: 66px;
+}
+
+.payment-screen-heading {
+  margin-bottom: 16px;
+}
+
+.payment-screen-heading h1 {
+  font-size: 16px;
+}
+
+.payment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(290px, .75fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.payment-form {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.payment-section {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--kurio-border);
+}
+
+.payment-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.payment-section-heading>span {
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.payment-section-heading h2 {
+  font-size: 10px;
+  margin: 0 0 4px;
+}
+
+.payment-section-heading p {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  margin: 0;
+}
+
+.payment-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 14px;
+  padding-top: 12px;
+}
+
+.payment-fields label,
+.profile-field {
+  min-width: 0;
+  display: block;
+  color: var(--kurio-secondary);
+  font-size: 9px;
+}
+
+.payment-fields label>input:not([type="checkbox"]),
+.payment-fields label>select {
+  display: block;
+  width: 100%;
+  height: 34px;
+  margin-top: 6px;
+  padding: 0 9px;
+  box-sizing: border-box;
+  font: 9px 'Roboto Mono', monospace;
+}
+
+.payment-fields label>textarea {
+  display: block;
+  width: 100%;
+  min-height: 112px;
+  margin-top: 6px;
+  padding: 9px;
+  box-sizing: border-box;
+  resize: vertical;
+  color: var(--kurio-ink);
+  background: var(--kurio-bg);
+  border: 1px solid var(--kurio-border);
+  border-radius: 5px;
+  font: 9px 'Roboto Mono', monospace;
+}
+
+.payment-field-wide {
+  grid-column: 1 / -1;
+}
+
+.connect-wallet {
+  color: var(--kurio-accent);
+  background: transparent;
+  border: 0;
+  padding: 8px 0 0;
+  font: 8px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.payment-security {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  line-height: 1.6;
+}
+
+.payment-security svg {
+  flex: none;
+  color: var(--kurio-accent);
+}
+
+.form-error {
+  color: #ff8d7c;
+  font-size: 12px;
+}
+
+.payment-summary>p:first-of-type {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  margin: -7px 0 10px;
+}
+
+.payment-summary-title {
+  margin-bottom: 5px !important;
+}
+
+.payment-nft-table-heading {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--kurio-border);
+  color: var(--kurio-secondary);
+  font-size: 8px;
+}
+
+.payment-nft-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 11px;
+}
+
+.payment-nft-line {
+  min-width: 0;
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 28px auto;
+  gap: 7px;
+  align-items: center;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background: var(--kurio-card);
+}
+
+.payment-nft-line>img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.payment-nft-line>div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.payment-nft-line strong {
+  overflow: hidden;
+  color: var(--kurio-ink);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.payment-nft-line small {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+}
+
+.payment-nft-line>strong:last-child {
+  color: var(--kurio-accent);
+}
+
+.payment-nft-line>span {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  text-align: center;
+}
+
+.payment-nft-line.is-loading {
+  height: 34px;
+  background: var(--kurio-bg);
+}
+
+.payment-promo-note {
+  color: var(--kurio-secondary);
+  font-size: 7px;
+  margin: 9px 0 5px;
+}
+
+.payment-promo {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.payment-promo input {
+  min-width: 0;
+  height: 26px;
+  flex: 1;
+  padding: 0 7px;
+  color: var(--kurio-ink);
+  background: var(--kurio-bg);
+  border: 1px solid var(--kurio-border);
+  border-radius: 4px;
+  font: 7px 'Roboto Mono', monospace;
+}
+
+.payment-promo button {
+  height: 26px;
+  padding: 0 8px;
+  color: var(--kurio-accent);
+  border-color: var(--kurio-border);
+  background: transparent;
+  font: 7px 'Roboto Mono', monospace;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 0;
+  margin: 12px 0 0;
+  border: 0;
+}
+
+.payment-methods legend {
+  padding: 0 0 5px;
+  color: var(--kurio-ink);
+  font-size: 8px;
+}
+
+.payment-methods label {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 7px;
+  border: 1px solid var(--kurio-border);
+  border-radius: 3px;
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  cursor: pointer;
+}
+
+.payment-methods label.selected {
+  border-color: var(--kurio-primary);
+  color: var(--kurio-ink);
+}
+
+.payment-methods input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.payment-method-icon {
+  display: none;
+}
+
+.payment-methods label>.payment-method-radio {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  border: 1px solid var(--kurio-muted);
+  border-radius: 50%;
+  color: transparent;
+}
+
+.payment-methods input:checked~.payment-method-radio {
+  color: var(--kurio-bg);
+  border-color: var(--kurio-primary);
+  background: var(--kurio-primary);
+}
+
+.payment-methods input:focus-visible~.payment-method-radio {
+  outline: 2px solid var(--kurio-accent);
+  outline-offset: 2px;
+}
+
+.mobile-connected-wallets {
+  display: none;
+}
+
+.required-mark {
+  color: var(--kurio-accent);
+}
+
+.payment-fields .payment-other-wallet {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  color: var(--kurio-ink);
+  cursor: pointer;
+}
+
+.payment-other-wallet input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.payment-other-wallet>span {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--kurio-muted);
+  border-radius: 50%;
+  color: transparent;
+}
+
+.payment-other-wallet input:checked+span {
+  color: var(--kurio-bg);
+  border-color: var(--kurio-primary);
+  background: var(--kurio-primary);
+}
+
+.back-to-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  color: var(--kurio-accent);
+  font-size: 8px;
+  text-decoration: none;
+}
+
+.confirmation-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: rgba(11, 8, 6, 0.96);
+}
+
+.app-shell:has(.confirmation-page) .market-header,
+.app-shell:has(.confirmation-page) .market-footer {
+  display: none;
+}
+
+.receipt-card {
+  position: relative;
+  width: min(440px, 100%);
+  padding: 14px 18px 14px;
+  text-align: center;
+  border-radius: 2px;
+  border-color: var(--kurio-border);
+  border-bottom: 4px solid var(--kurio-primary);
+  background: rgba(36, 22, 18, 0.96);
+}
+
+.receipt-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  color: var(--kurio-muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.confirmation-icon {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  color: var(--kurio-primary);
+}
+
+.confirmation-icon svg {
+  width: 60px;
+  height: 60px;
+  stroke-width: 1.2;
+}
+
+.confirmation-heading h1 {
+  color: var(--kurio-secondary);
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 0;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 500;
+}
+
+.receipt-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 18px 0 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--kurio-border);
+  border-bottom: 1px solid var(--kurio-border);
+  text-align: left;
+}
+
+.receipt-meta>div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.receipt-meta>div+div {
+  border-left: 1px solid rgba(207, 178, 140, .2);
+  padding-left: 8px;
+}
+
+.receipt-meta span,
+.receipt-meta strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.receipt-meta span {
+  color: var(--kurio-muted);
+  font-size: 7px;
+  letter-spacing: 0.01em;
+}
+
+.receipt-meta strong {
+  color: var(--kurio-ink);
+  font-size: 8px;
+  font-weight: 500;
+}
+
+.receipt-item-section {
+  text-align: left;
+}
+
+.receipt-detail-title {
+  margin: 12px 0 14px;
+  color: var(--kurio-ink);
+  font-size: 10px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.receipt-item-heading {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 52px 64px;
+  column-gap: 8px;
+  align-items: center;
+  padding-bottom: 8px;
+  color: var(--kurio-ink);
+  font-size: 9px;
+}
+
+.receipt-item-heading strong:first-child {
+  grid-column: 1 / 3;
+}
+
+.receipt-item-heading strong:nth-child(2) {
+  text-align: center;
+}
+
+.receipt-item-heading strong:last-child {
+  text-align: right;
+}
+
+.receipt-nft-line {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 52px 64px;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid var(--kurio-border);
+}
+
+.receipt-nft-line img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.receipt-nft-line>div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.receipt-nft-line strong {
+  overflow: hidden;
+  color: var(--kurio-ink);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.receipt-nft-line>strong:last-child {
+  color: var(--kurio-accent);
+  text-align: right;
+}
+
+.receipt-nft-line>span {
+  color: var(--kurio-secondary);
+  font-size: 8px;
+  text-align: center;
+}
+
+.receipt-nft-line small {
+  color: var(--kurio-muted);
+  font-size: 6px;
+}
+
+.receipt-nft-line.is-loading {
+  height: 38px;
+}
+
+.receipt-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  padding-left: 32%;
+}
+
+.receipt-totals>div {
+  display: flex;
+  justify-content: space-between;
+  color: var(--kurio-secondary);
+  font-size: 9px;
+}
+
+.receipt-totals strong {
+  color: var(--kurio-ink);
+  font-weight: 500;
+  text-align: right;
+}
+
+.receipt-totals .receipt-total {
+  padding-top: 8px;
+  margin-top: 2px;
+  border-top: 1px solid var(--kurio-border);
+  color: var(--kurio-ink);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.receipt-totals .receipt-total strong {
+  color: var(--kurio-accent);
+  font-weight: 700;
+}
+
+.receipt-note {
+  color: var(--kurio-muted);
+  font-size: 8px;
+  line-height: 1.5;
+  margin: 14px 0 18px;
+  text-align: center;
+}
+
+.receipt-continue {
+  width: 72%;
+  height: 32px;
+  color: var(--kurio-card);
+  background: var(--kurio-primary);
+  font: 700 9px 'Roboto Mono', monospace;
+  margin: 0 auto;
+  display: flex;
+}
+
+.auth-page {
+  flex: 1;
+  min-height: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px;
+  box-sizing: border-box;
+}
+
+.auth-form {
+  width: min(430px, 100%);
+  padding: 0;
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.auth-form-heading {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.auth-form-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: var(--kurio-ink);
+  font-size: 14px;
+}
+
+.auth-tab {
+  color: var(--kurio-secondary);
+  text-decoration: none;
+}
+
+.auth-tab-active {
+  color: var(--kurio-primary);
+  font-weight: 500;
+}
+
+.auth-tab-divider {
+  color: var(--kurio-primary);
+  opacity: .7;
+}
+
+.auth-tab-link {
+  color: var(--kurio-ink);
+}
+
+.auth-form-heading p {
+  color: var(--kurio-secondary);
+  font-size: 10px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.auth-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.auth-form label {
+  color: var(--kurio-secondary);
+  font: 11px 'Roboto Mono', monospace;
+}
+
+.auth-form input {
+  height: 43px;
+  color: var(--kurio-ink);
+  background: transparent;
+  border-color: var(--kurio-border);
+  font: 12px 'Roboto Mono', monospace;
+}
+
+.auth-input-wrap {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border: 1px solid rgba(210, 138, 76, 0.2);
+  border-radius: 6px;
+  background: rgba(21, 14, 10, 0.84);
+}
+
+.auth-input-wrap:focus-within {
+  border-color: var(--kurio-primary);
+  box-shadow: 0 0 0 1px rgba(210, 138, 76, 0.6);
+}
+
+.auth-input-icon {
+  flex: none;
+  color: var(--kurio-muted);
+}
+
+.auth-input-wrap input {
+  min-width: 0;
+  flex: 1;
+  height: 42px;
+  padding: 0;
+  border: none !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.auth-input-wrap input::placeholder {
+  color: rgba(207, 178, 140, 0.8);
+}
+
+.auth-input-wrap input:focus-visible,
+.auth-input-wrap input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  ring: 0;
+}
+
+.auth-password-toggle {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  color: rgba(207, 178, 140, 0.6);
+  background: transparent;
+  cursor: pointer;
+}
+
+.auth-password-toggle:hover {
+  color: var(--kurio-accent);
+}
+
+.auth-forgot-password-wrap {
+  width: 100%;
+  text-align: right;
+  margin-top: 2px;
+  margin-bottom: 12px;
+}
+
+.auth-forgot-password {
+  color: var(--kurio-primary);
+  font-size: 10px;
+  text-decoration: none;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.auth-forgot-password:hover {
+  text-decoration: underline;
+}
+
+.auth-submit-button {
+  width: 100%;
+  height: 42px;
+  color: var(--kurio-bg);
+  background: var(--kurio-primary);
+  font: 700 13px 'Roboto Mono', monospace;
+  border-radius: 6px;
+  border: 0;
+}
+
+.auth-error {
+  margin: 0;
+  color: #ff9a86;
+  font-size: 11px;
+}
+
+.auth-social-divider {
+  position: relative;
+  margin: 24px 0 16px;
+  text-align: center;
+  color: var(--kurio-secondary);
+  font-size: 10px;
+}
+
+.auth-social-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(207, 178, 140, 0.15);
+}
+
+.auth-social-divider span {
+  position: relative;
+  display: inline-block;
+  padding: 0 12px;
+  background: rgba(36, 22, 18, 0.96);
+}
+
+.auth-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.auth-social-button {
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgba(207, 178, 140, 0.15);
+  border-radius: 6px;
+  background: rgba(21, 14, 10, 0.84);
+  color: var(--kurio-secondary);
+  font: 500 11px 'Roboto Mono', monospace;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-social-button .social-icon {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.auth-social-google .social-icon {
+  color: #f1f1f1;
+}
+
+.auth-social-facebook .social-icon {
+  color: #3b82f6;
+}
+
+.auth-switch-link {
+  color: var(--kurio-secondary);
+  font-size: 11px;
+  text-align: center;
+  margin-top: 18px;
+}
+
+.auth-switch-link a {
+  color: var(--kurio-accent);
+}
+
+.auth-scene {
+  position: relative;
+  min-height: 100vh;
+}
+
+.auth-background {
+  pointer-events: none;
+  user-select: none;
+}
+
+.auth-background .home-page {
+  padding-bottom: 32px;
+}
+
+.auth-dialog-content {
+  width: min(430px, calc(100vw - 32px));
+  max-width: 430px;
+  padding: 14px 18px 18px;
+  border: 1px solid var(--kurio-border);
+  border-radius: 2px;
+  border-bottom: 4px solid var(--kurio-primary);
+  color: var(--kurio-ink);
+  background: rgba(36, 22, 18, 0.96);
+  font-family: 'Roboto Mono', monospace;
+  box-shadow: none;
+}
+
+body:has(.auth-dialog-content) [data-state="open"]:not(.auth-dialog-content) {
+  background: rgba(20, 13, 10, .68);
+}
+
+.auth-dialog-content>button[aria-label="Close"] {
+  color: var(--kurio-primary);
+}
+
+.auth-dialog-content .auth-form {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.auth-dialog-content .auth-form-heading {
+  margin-bottom: 16px;
+}
+
+.auth-dialog-content .auth-switch-link {
+  margin-bottom: 0;
+}
+
+.auth-register-dialog {
+  max-height: min(780px, calc(100dvh - 32px));
+  overflow-y: auto;
+}
+
+.auth-register-dialog .auth-form-heading {
+  margin-bottom: 18px;
+}
+
+.auth-register-dialog .auth-form form {
+  gap: 11px;
+}
+
+.auth-register-dialog .auth-form input {
+  height: 40px;
+}
+
+.auth-dialog-content input:focus-visible {
+  outline: 2px solid var(--kurio-primary);
+  outline-offset: 1px;
+}
+
+.auth-dialog-content :is(button, a):focus-visible {
+  outline: 2px solid var(--kurio-accent);
+  outline-offset: 3px;
+}
+
+.profile-page {
+  min-height: 600px;
+  padding: 20px 0 0;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+  max-width: 1110px;
+  margin: 0 auto;
+}
+
+.profile-sidebar {
+  background: rgba(36, 22, 18, 0.38);
+  padding: 14px 0 0;
+  border-radius: 4px;
+  border: 1px solid rgba(210, 138, 76, 0.12);
+}
+
+.profile-sidebar-title {
+  color: var(--kurio-ink);
+  font-size: 14px;
+  margin: 0 0 16px 24px;
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.profile-nav a,
+.profile-nav button {
+  padding: 14px 24px;
+  color: var(--kurio-secondary);
+  font-size: 11px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 2px solid transparent;
+  font-family: 'Roboto Mono', monospace;
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.profile-nav a:hover,
+.profile-nav button:hover:not(:disabled) {
+  color: var(--kurio-ink);
+}
+
+.profile-nav a.active {
+  color: var(--kurio-primary);
+  border-left-color: var(--kurio-primary);
+  background: rgba(210, 138, 76, .04);
+}
+
+.profile-nav button:disabled,
+.profile-nav .disabled {
+  color: rgba(207, 178, 140, 0.35);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.profile-sidebar-footer {
+  margin-top: 16px;
+  border-top: 1px solid rgba(210, 138, 76, 0.1);
+  padding-top: 16px;
+}
+
+.profile-logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  color: var(--kurio-secondary);
+  font-size: 11px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.profile-logout:hover {
+  color: var(--kurio-ink);
+}
+
+.profile-panel {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2px;
+}
+
+.profile-panel-heading h1 {
+  color: var(--kurio-ink);
+  font-size: 15px;
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.profile-panel-heading p {
+  color: var(--kurio-secondary);
+  font-size: 10px;
+  margin: 0 0 24px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.profile-panel-heading.mt-6 {
+  margin-top: 30px;
+}
+
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 28px;
+  margin-bottom: 18px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-field label {
+  color: var(--kurio-secondary);
+  font: 11px 'Roboto Mono', monospace;
+}
+
+.profile-field label .required {
+  color: var(--kurio-primary);
+  margin-left: 4px;
+}
+
+.profile-input-wrap {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border: 1px solid rgba(210, 138, 76, 0.2);
+  border-radius: 2px;
+  background: rgba(21, 14, 10, 0.84);
+  height: 38px;
+}
+
+.profile-input-wrap:focus-within {
+  border-color: var(--kurio-primary);
+}
+
+.profile-input-wrap input {
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+  padding: 0;
+  border: none !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--kurio-ink);
+  font-size: 11px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.profile-input-wrap input:focus-visible,
+.profile-input-wrap input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.profile-input-wrap input::placeholder {
+  color: rgba(207, 178, 140, 0.4);
+}
+
+.ens-input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ens-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  height: 38px;
+  border: 1px solid rgba(210, 138, 76, 0.2);
+  border-radius: 2px;
+  background: rgba(21, 14, 10, 0.84);
+  color: var(--kurio-ink);
+  font-size: 11px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.avatar-edit-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-placeholder {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(210, 138, 76, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kurio-primary);
+}
+
+.btn-alterar {
+  height: 32px;
+  padding: 0 16px;
+  background: var(--kurio-primary);
+  color: var(--kurio-bg);
+  border: 0;
+  border-radius: 4px;
+  font: 700 11px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.btn-remover {
+  height: 32px;
+  padding: 0 16px;
+  background: transparent;
+  color: var(--kurio-secondary);
+  border: 0;
+  font: 11px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.profile-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 380px;
+}
+
+.btn-salvar {
+  height: 36px;
+  padding: 0 24px;
+  background: var(--kurio-primary);
+  color: var(--kurio-bg);
+  border: 0;
+  border-radius: 4px;
+  font: 700 12px 'Roboto Mono', monospace;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.wallet-connected-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--kurio-border);
+  border-radius: 6px;
+}
+
+.wallet-address {
+  color: var(--kurio-ink);
+  font-size: 12px;
+  margin: 0 0 6px;
+}
+
+.wallet-label {
+  color: var(--kurio-secondary);
+  font-size: 10px;
+  margin: 0;
+}
+
+.wallet-connected-card button {
+  color: var(--kurio-accent);
+  border-color: var(--kurio-border);
+  background: transparent;
+}
+
+.wallet-add-form {
+  border-top: 1px solid var(--kurio-border);
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wallet-add-form h2 {
+  color: var(--kurio-ink);
+  font-size: 14px;
+  margin: 0;
+}
+
+.wallet-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.wallet-header-row .profile-panel-heading {
+  flex: 1;
+}
+
+.wallet-action-link {
+  color: var(--kurio-primary);
+  background: transparent;
+  border: 0;
+  font: 12px 'Roboto Mono', monospace;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 4px;
+}
+
+.wallet-action-link:hover {
+  text-decoration: underline;
+}
+
+.dropdown-wrap {
+  position: relative;
+  padding: 0;
+}
+
+.profile-select {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--kurio-ink);
+  padding: 0 32px 0 12px;
+  font: 11px 'Roboto Mono', monospace;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.profile-select option {
+  background: #201711;
+  color: #f6efe6;
+}
+
+.select-icon {
+  position: absolute;
+  right: 12px;
+  color: var(--kurio-secondary);
+  pointer-events: none;
+}
+
+.wallet-secondary-section {
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(210, 138, 76, 0.18);
+}
+
+.wallet-secondary-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 0;
+}
+
+.wallet-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kurio-secondary);
+  font: 11px 'Roboto Mono', monospace;
+  cursor: pointer;
+}
+
+.wallet-radio-label input {
+  display: none;
+}
+
+.radio-custom {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(210, 138, 76, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.wallet-radio-label input:checked+.radio-custom {
+  border-color: var(--kurio-primary);
+}
+
+.wallet-radio-label input:checked+.radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: var(--kurio-primary);
+  border-radius: 50%;
+}
+
+@media (max-width: 700px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+
+  body {
+    background: var(--kurio-bg);
+  }
+
+  .app-shell {
+    padding-bottom: 70px;
+  }
+
+  .app-shell:has(.auth-container) {
+    padding-bottom: 0;
+  }
+
+  .market-header.mobile-only {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 56px;
+    background: rgba(20, 13, 10, 0.96);
+    padding: 0 16px;
+    align-items: center;
+    border-bottom: none;
+  }
+
+  .mobile-home-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mobile-search-bar {
+    flex: 1;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(210, 138, 76, 0.08);
+    border-radius: 14px;
+    padding: 0 16px;
+    color: var(--kurio-secondary);
+    border: 1px solid rgba(210, 138, 76, 0.12);
+  }
+
+  .mobile-search-bar input {
+    background: transparent;
+    border: 0;
+    color: var(--kurio-ink);
+    font: 12px 'Roboto Mono', monospace;
+    width: 100%;
+    outline: none;
+  }
+
+  .mobile-search-bar input::placeholder {
+    color: var(--kurio-secondary);
+  }
+
+  .mobile-filter-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: var(--kurio-primary);
+    color: var(--kurio-bg);
+    display: grid;
+    place-items: center;
+    border: 0;
+  }
+
+  .mobile-back-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-back-header.mobile-back-header-transparent {
+    background: transparent;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    z-index: 10;
+  }
+
+  .mobile-back-header h2 {
+    color: var(--kurio-ink);
+    font: 14px 'Roboto Mono', monospace;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+  }
+
+  .mobile-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(36, 22, 18, 0.8);
+    color: var(--kurio-primary);
+    display: grid;
+    place-items: center;
+    border: 0;
+  }
+
+  .mobile-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(20, 13, 10, 0.96);
+    border-top: 1px solid rgba(210, 138, 76, 0.1);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 0;
+    z-index: 100;
+    border-radius: 0;
+    width: 100%;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .mobile-tab-bar a,
+  .mobile-tab-bar button {
+    color: var(--kurio-secondary);
+    background: transparent;
+    border: 0;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .mobile-tab-bar a.active,
+  .mobile-tab-bar a:hover {
+    color: var(--kurio-primary);
+  }
+
+  .mobile-tab-bar a.active {
+    background: rgba(210, 138, 76, 0.08);
+    border-radius: 12px;
+  }
+
+  .mobile-tab-bar a[href="/profile"].active {
+    background: rgba(210, 138, 76, 0.12);
+  }
+
+  .tab-scan-btn {
+    min-width: 68px !important;
+    min-height: 68px !important;
+    width: 68px !important;
+    height: 68px !important;
+    flex-shrink: 0;
+    flex-basis: 68px;
+    background: rgba(210, 138, 76, 0.45) !important;
+    border-radius: 50%;
+    color: var(--kurio-ink) !important;
+    transform: translateY(-20px);
+    border: 0 !important;
+    display: grid;
+    place-items: center;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    box-shadow: none;
+    aspect-ratio: 1;
+  }
+
+  .tab-cart-badge {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    background: var(--kurio-primary);
+    color: var(--kurio-bg);
+    font: 700 9px 'Roboto Mono', monospace;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+
+  .tab-bar-bg {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Home */
+  .market-sidebar {
+    display: none !important;
+  }
+
+  .market-sidebar.mobile-filter-open {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: block !important;
+    width: 100%;
+    max-width: none;
+    padding: 64px 16px 24px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background: rgba(12, 9, 7, 0.78);
+    backdrop-filter: blur(4px);
+  }
+
+  .mobile-filter-open .filter-panel {
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+  }
+
+  .mobile-filter-open .featured-nft {
+    display: none;
+  }
+
+  .mobile-filter-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 121;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--kurio-border);
+    border-radius: 50%;
+    color: var(--kurio-ink);
+    background: var(--kurio-card);
+  }
+
+  .marketplace-screen {
+    width: calc(100% - 32px);
+    padding: 24px 0 32px;
+  }
+
+  .screen-heading {
+    margin-bottom: 24px;
+  }
+
+  .screen-heading h1 {
+    font-size: 25px;
+  }
+
+  .home-hero {
+    background: radial-gradient(ellipse at 20% 50%, rgba(210, 138, 76, 0.25) 0%, transparent 60%), #261711;
+    border-radius: 24px;
+    padding: 24px 16px 40px;
+    position: relative;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 8px;
+    overflow: hidden;
+    height: auto;
+    flex-direction: row;
+  }
+
+  .hero-copy {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-copy .eyebrow {
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--kurio-ink);
+    margin: 0 0 6px;
+  }
+
+  .hero-copy h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--kurio-ink);
+    margin: 6px 0;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .hero-description {
+    font-size: 9px;
+    line-height: 1.4;
+    color: var(--kurio-secondary);
+    margin-bottom: 12px;
+  }
+
+  .hero-cta {
+    font-size: 10px;
+    padding: 6px 0;
+    height: auto;
+    border: 0;
+    background: transparent;
+    color: var(--kurio-primary);
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    width: max-content;
+  }
+
+  .hero-dots {
+    display: flex;
+    gap: 6px;
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 3;
+  }
+
+  .hero-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--kurio-primary);
+    opacity: 0.3;
+    margin: 0;
+  }
+
+  .hero-dots span.active {
+    opacity: 1;
+  }
+
+  .hero-images {
+    width: 45%;
+    max-width: 130px;
+    position: relative;
+    margin-left: auto;
+  }
+
+  .hero-art {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+    margin: 0;
+  }
+
+  .hero-art-small {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    position: absolute;
+    bottom: -12px;
+    left: -15px;
+    border: 3px solid #261711;
+    object-fit: cover;
+    z-index: 2;
+  }
+
+  .catalog-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    border: 0;
+    padding: 0;
+    margin-bottom: 24px;
+  }
+
+  .catalog-tabs {
+    width: 100%;
+    border-bottom: 0;
+    padding: 0;
+    gap: 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+  }
+
+  .catalog-tabs button {
+    font-size: 11px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding: 0 0 4px;
+    margin: 0;
+    color: var(--kurio-ink);
+  }
+
+  .catalog-tabs button::after {
+    display: none;
+  }
+
+  .catalog-tabs button.active {
+    border-bottom-color: var(--kurio-primary);
+    color: var(--kurio-primary);
+    font-weight: 700;
+  }
+
+  .sort-control {
+    display: none;
+  }
+
+  .nft-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding-bottom: 32px;
+  }
+
+  .nft-card {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    display: block;
+    position: relative;
+  }
+
+  .nft-card:nth-child(even) {
+    transform: translateY(32px);
+  }
+
+  .nft-image {
+    position: relative;
+    display: block;
+  }
+
+  .nft-image img {
+    border-radius: 16px;
+    height: auto;
+    aspect-ratio: 1;
+    margin-bottom: 8px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .nft-grid-favorite {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(20, 13, 10, 0.7);
+    color: var(--kurio-secondary);
+    border: 1px solid rgba(210, 138, 76, 0.2);
+    display: grid;
+    place-items: center;
+  }
+
+  .nft-rarity-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--kurio-primary);
+    color: var(--kurio-bg);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 16px 0 8px 0;
+    font-family: 'Roboto Mono', monospace;
+    z-index: 2;
+  }
+
+  .nft-name {
+    font-size: 11px;
+    margin-top: 12px;
+    font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
+    display: block;
+    margin: 0;
+    color: var(--kurio-ink);
+  }
+
+  .nft-price {
+    font-size: 11px;
+    color: var(--kurio-primary);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    display: block;
+    margin: 2px 0 0;
+  }
+
+  .mobile-tab-bar {
+    padding: 0 !important;
+    background: transparent !important;
+    border-top: 0 !important;
+    height: 70px;
+    border-radius: 0;
+    width: 100%;
+    left: 0;
+    transform: none;
+    bottom: 0;
+  }
+
+  .tab-bar-bg {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .tab-scan-btn {
+    min-width: 68px !important;
+    min-height: 68px !important;
+    width: 68px !important;
+    height: 68px !important;
+    flex-shrink: 0;
+    background: rgba(210, 138, 76, 0.45) !important;
+    color: var(--kurio-ink) !important;
+    border-radius: 50%;
+    transform: translateY(-24px);
+    border: 0 !important;
+    display: grid;
+    place-items: center;
+    box-shadow: none;
+    margin: 0 auto;
+    aspect-ratio: 1;
+  }
+
+  /* NFT Detail */
+  .nft-detail-layout,
+  .cart-layout,
+  .payment-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .nft-detail-layout>*,
+  .cart-layout>*,
+  .payment-layout>* {
+    min-width: 0;
+  }
+
+  .nft-detail-page {
+    padding-top: 0;
+    padding-bottom: 24px;
+  }
+
+  .nft-artwork-panel {
+    order: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0 0 8px;
+    border: 1px solid rgba(210, 138, 76, 0.12);
+  }
+
+  .nft-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    border: 0;
+  }
+
+  .nft-thumbnails {
+    display: none;
+  }
+
+  .nft-information h1 {
+    font-size: 22px;
+  }
+
+  .nft-detail-tabs {
+    margin-top: 30px;
+  }
+
+  .nft-collection-section {
+    margin-top: 34px;
+  }
+
+  .nft-collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nft-review-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .nft-review-panel>div {
+    grid-row: auto;
+  }
+
+  .mobile-fixed-action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--kurio-card);
+    padding: 16px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 100;
+    border: 0;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .mobile-action-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobile-action-qty {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mobile-action-qty>span {
+    color: var(--kurio-secondary);
+    font-size: 13px;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .mobile-action-qty .nft-quantity {
+    background: transparent;
+    padding: 0;
+  }
+
+  .mobile-action-qty .nft-quantity button {
+    background: transparent;
+    color: var(--kurio-primary);
+    padding: 0;
+  }
+
+  .mobile-action-qty .nft-quantity span {
+    font-size: 14px;
+    color: var(--kurio-ink);
+    font-weight: 700;
+  }
+
+  .mobile-action-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--kurio-primary);
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .mobile-action-bottom-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mobile-action-buy-btn {
+    flex: 1;
+    height: 48px;
+    border-radius: 24px;
+    font-size: 14px;
+    background: var(--kurio-primary);
+    color: var(--kurio-bg);
+    border: 0;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .mobile-action-cart-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(36, 22, 18, 0.8);
+    color: var(--kurio-primary);
+    display: grid;
+    place-items: center;
+    border: 0;
+  }
+
+  /* Cart */
+  .app-shell:has(.cart-page) {
+    padding-bottom: 0;
+  }
+
+  .app-shell:has(.cart-page) .mobile-tab-bar {
+    display: none !important;
+  }
+
+  .cart-page {
+    width: calc(100% - 16px);
+    min-height: 100dvh;
+    padding: 0 0 290px;
+    border-radius: 32px;
+    overflow: clip;
+  }
+
+  .cart-page .nft-breadcrumb,
+  .cart-screen-heading {
+    display: none;
+  }
+
+  .cart-recommendations {
+    display: none;
+  }
+
+  .cart-layout {
+    gap: 0;
+  }
+
+  .cart-table-heading {
+    display: none;
+  }
+
+  .cart-items-panel {
+    padding: 12px 12px 0;
+    background: transparent;
+    border: 0;
+  }
+
+  .cart-line {
+    width: 302px;
+    max-width: calc(100% - 12px);
+    min-height: 84px;
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr) 72px;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    gap: 0 7px;
+    padding: 0;
+    margin-left: 12px;
+    background: rgba(36, 22, 18, 0.72);
+    border-radius: 13px;
+    margin-bottom: 16px;
+    border: 0;
+    overflow: hidden;
+  }
+
+  .cart-line>img {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 84px;
+    height: 84px;
+    border-radius: 0;
+  }
+
+  .cart-line-description {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    min-width: 0;
+    padding-top: 10px;
+  }
+
+  .cart-line-description h4 {
+    font-size: 12px;
+    margin: 0 0 3px;
+    color: var(--kurio-ink);
+  }
+
+  .cart-line-description p {
+    font-size: 10px;
+    color: var(--kurio-secondary);
+    margin: 0;
+  }
+
+  .cart-unit-price {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--kurio-accent);
+    text-align: left;
+  }
+
+  .cart-line-total {
+    display: none;
+  }
+
+  .cart-line .cart-remove-button {
+    display: none !important;
+  }
+
+  .cart-line .cart-quantity {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin: 0;
+  }
+
+  .cart-line .cart-quantity button {
+    width: 21px;
+    height: 21px;
+    min-width: 21px;
+    padding: 0;
+    color: var(--kurio-secondary);
+    border: 0;
+    border-radius: 50%;
+    background: rgba(210, 138, 76, 0.12);
+    font-size: 14px;
+  }
+
+  .cart-line .cart-quantity span {
+    min-width: 16px;
+    color: var(--kurio-ink);
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .cart-summary {
+    position: fixed;
+    z-index: 90;
+    left: 8px;
+    right: 8px;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(36, 22, 18, 0.98);
+    padding: 18px 20px 20px;
+    border-radius: 28px 28px 0 0;
+    border: 0;
+    margin: 0;
+    box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .cart-summary h2,
+  .cart-summary .continue-shopping-button {
+    display: none;
+  }
+
+  .cart-summary .coupon-row {
+    order: 0;
+    height: 42px;
+    gap: 0;
+    margin: 0 0 12px;
+    padding-left: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(210, 138, 76, 0.18);
+    border-radius: 24px;
+  }
+
+  .cart-summary .coupon-row input {
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font-size: 10px;
+  }
+
+  .cart-summary .coupon-row button {
+    height: 42px;
+    padding: 0 16px;
+    border-radius: 24px;
+    font-size: 12px;
+  }
+
+  .cart-summary .summary-lines {
+    order: 1;
+    gap: 9px;
+    font-size: 12px;
+  }
+
+  .cart-summary .summary-line:nth-child(2) {
+    order: 3;
+  }
+
+  .cart-summary .summary-line:nth-child(3) {
+    order: 2;
+  }
+
+  .cart-summary .summary-line:nth-child(2) {
+    position: relative;
+    padding-bottom: 9px;
+  }
+
+  .cart-summary .summary-line:nth-child(2)::after {
+    content: 'Taxa estimada';
+    position: absolute;
+    right: 0;
+    top: calc(100% - 8px);
+    color: var(--kurio-accent);
+    font-size: 8px;
+  }
+
+  .cart-summary .summary-total {
+    order: 4;
+  }
+
+  .cart-summary .summary-line,
+  .cart-summary .summary-total {
+    margin: 0;
+  }
+
+  .cart-summary .summary-line.discount-line {
+    color: var(--kurio-ink);
+  }
+
+  .cart-summary .summary-total {
+    border: 0;
+    padding: 0;
+    font-size: 14px;
+  }
+
+  .cart-summary .continue-payment-button {
+    order: 2;
+    height: 50px;
+    margin-top: 24px;
+    border-radius: 25px;
+    font-size: 13px;
+  }
+
+  /* Payment */
+  .app-shell:has(.payment-page) {
+    position: relative;
+    min-height: 100dvh;
+    padding-bottom: 0;
+    background: #201e1c;
+  }
+
+  .app-shell:has(.payment-page) .market-header.mobile-only {
+    position: absolute;
+    top: 15px;
+    left: 6px;
+    right: 6px;
+    width: auto;
+    height: 56px;
+    padding: 0 24px;
+    background: transparent;
+    z-index: 101;
+  }
+
+  .app-shell:has(.payment-page) .mobile-tab-bar,
+  .app-shell:has(.payment-page) .market-footer {
+    display: none !important;
+  }
+
+  .payment-page {
+    width: calc(100% - 12px);
+    min-height: calc(100dvh - 26px);
+    margin: 15px auto;
+    padding: 42px 24px 22px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 32px;
+    background: var(--kurio-bg);
+  }
+
+  .payment-page .nft-breadcrumb,
+  .payment-screen-heading {
+    display: none;
+  }
+
+  .payment-layout {
+    display: block;
+    min-height: calc(100dvh - 127px);
+  }
+
+  .payment-form {
+    display: none;
+  }
+
+  .payment-summary {
+    display: flex;
+    flex-direction: column;
+    width: 302px;
+    max-width: calc(100% + 2px);
+    min-height: calc(100dvh - 127px);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    transform: translateX(-1px);
+  }
+
+  .mobile-connected-wallets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    order: 0;
+  }
+
+  .mobile-wallet-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    color: var(--kurio-ink);
+    font-size: 13px;
+  }
+
+  .mobile-wallet-heading button {
+    padding: 0;
+    border: 0;
+    color: var(--kurio-accent);
+    background: transparent;
+    font: 700 11px 'Roboto Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .mobile-connected-wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mobile-connected-wallet-card {
+    position: relative;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px 0 15px;
+    box-sizing: border-box;
+    border-radius: 14px;
+    background: rgba(36, 22, 18, 0.88);
+  }
+
+  .mobile-connected-wallet-card>input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .mobile-connected-wallet-card>label {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+  }
+
+  .connected-wallet-radio {
+    width: 13px;
+    height: 13px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(210, 138, 76, 0.45);
+    border-radius: 50%;
+  }
+
+  .mobile-connected-wallet-card.selected .connected-wallet-radio::after {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--kurio-primary);
+    content: '';
+  }
+
+  .connected-wallet-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .connected-wallet-copy strong {
+    color: var(--kurio-ink);
+    font-size: 13px;
+  }
+
+  .connected-wallet-copy>span,
+  .connected-wallet-copy small {
+    overflow: hidden;
+    color: var(--kurio-secondary);
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .connected-wallet-more {
+    width: 24px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    color: var(--kurio-secondary);
+    background: transparent;
+  }
+
+  .payment-summary-title,
+  .payment-nft-table-heading,
+  .payment-nft-list,
+  .payment-promo-note,
+  .payment-promo {
+    display: none;
+  }
+
+  .payment-summary .summary-lines {
+    order: 2;
+    gap: 0;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .payment-summary .summary-line {
+    display: none;
+  }
+
+  .payment-summary .summary-total {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 14px;
+  }
+
+  .payment-summary .summary-total strong {
+    color: var(--kurio-accent);
+  }
+
+  .payment-methods {
+    width: 100%;
+    order: 1;
+    gap: 12px;
+    margin: 20px 0 0;
+  }
+
+  .payment-methods legend {
+    position: relative;
+    top: -8px;
+    padding: 0 0 2px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .payment-methods label {
+    position: relative;
+    min-height: 55px;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) 14px;
+    gap: 10px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    border: 1px solid rgba(210, 138, 76, 0.12);
+    border-radius: 14px;
+    color: var(--kurio-ink);
+    background: rgba(36, 22, 18, 0.88);
+    font-size: 12px;
+  }
+
+  .payment-methods label.selected {
+    border-color: rgba(210, 138, 76, 0.45);
+    background: rgba(36, 22, 18, 0.96);
+    box-shadow: inset 0 0 0 1px rgba(210, 138, 76, 0.08);
+  }
+
+  .payment-method-icon {
+    grid-column: 1;
+    grid-row: 1;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(210, 138, 76, 0.16);
+    border-radius: 50%;
+    color: var(--kurio-accent);
+    font-size: 11px;
+  }
+
+  .payment-method-name {
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .payment-methods label>.payment-method-radio {
+    grid-column: 3;
+    grid-row: 1;
+    width: 14px;
+    height: 14px;
+    justify-self: center;
+    align-self: center;
+    border: 1px solid rgba(210, 138, 76, 0.42);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  .payment-method-radio svg {
+    display: none;
+  }
+
+  .payment-methods input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  .payment-methods input:checked~.payment-method-radio {
+    background: transparent;
+    border-color: var(--kurio-primary);
+  }
+
+  .payment-methods input:checked~.payment-method-radio::after {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--kurio-primary);
+    content: '';
+    display: block;
+  }
+
+  .payment-summary .form-error {
+    order: 4;
+    margin: 10px 0 0;
+  }
+
+  .payment-summary .confirm-payment-button {
+    width: 100%;
+    height: 50px;
+    flex: none;
+    order: 5;
+    margin: auto 0 0;
+    border-radius: 25px;
+    font-size: 13px;
+  }
+
+  .payment-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .wallet-card {
+    background: rgba(36, 22, 18, 0.38);
+    padding: 16px;
+    border: 1px solid rgba(210, 138, 76, 0.08);
+    border-radius: 14px;
+  }
+
+  .wallet-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .wallet-card-header h3 {
+    font-size: 13px;
+    color: var(--kurio-ink);
+    margin: 0;
+  }
+
+  .wallet-card-header button {
+    font-size: 11px;
+    color: var(--kurio-primary);
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  .wallet-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .wallet-card-content>div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .wallet-card-content p {
+    color: var(--kurio-ink);
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .wallet-card-content span {
+    color: var(--kurio-secondary);
+    font-size: 11px;
+    margin: 0;
+  }
+
+  .wallet-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: rgba(36, 22, 18, 0.38);
+    border-radius: 14px;
+    border: 1px solid rgba(210, 138, 76, 0.08);
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .wallet-option span {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--kurio-ink);
+  }
+
+  .payment-summary {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    margin-top: 32px;
+  }
+
+  .summary-total.payment-total {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .btn-pay {
+    height: 48px;
+    border-radius: 24px;
+    font-size: 14px;
+  }
+
+  /* Auth */
+  .auth-container {
+    background: var(--kurio-bg);
+    align-items: flex-start;
+    padding: 24px 16px;
+  }
+
+  .auth-page {
+    width: 100%;
+    box-shadow: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    min-height: auto;
+  }
+
+  .auth-form {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+  }
+
+  .auth-form::after {
+    display: none;
+  }
+
+  .auth-form-heading {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .auth-form-heading::before {
+    content: "KURIO";
+    display: block;
+    font: 700 24px 'Roboto Mono', monospace;
+    color: var(--kurio-ink);
+    margin-bottom: 40px;
+    letter-spacing: 4px;
+  }
+
+  .auth-form-tabs {
+    display: none;
+  }
+
+  .auth-form-heading p {
+    display: none;
+  }
+
+  .auth-form-heading::after {
+    content: "Entrar";
+    display: block;
+    font: 18px 'Roboto Mono', monospace;
+    color: var(--kurio-ink);
+  }
+
+  .register-mode .auth-form-heading::after {
+    content: "Criar perfil de colecionador";
+    font-size: 14px;
+  }
+
+  .auth-field {
+    margin-bottom: 0;
+  }
+
+  .auth-form-body {
+    gap: 16px;
+  }
+
+  .auth-input-wrap {
+    border-radius: 4px;
+    border: 1px solid rgba(210, 138, 76, 0.3);
+    height: 48px;
+    background: transparent;
+  }
+
+  .auth-submit-button {
+    height: 48px;
+    margin-top: 24px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+
+  .auth-social-button {
+    height: 48px;
+    border-radius: 4px;
+    border-color: rgba(210, 138, 76, 0.3);
+    background: transparent;
+    color: var(--kurio-secondary);
+  }
+
+  .auth-social-button:hover {
+    background: rgba(210, 138, 76, 0.1);
+  }
+
+  .auth-socials {
+    gap: 12px;
+  }
+
+  .auth-social-divider span {
+    color: var(--kurio-secondary);
+    background: var(--kurio-bg);
+  }
+
+  .auth-mobile-footer.mobile-only {
+    display: block !important;
+    text-align: center;
+    margin-top: 32px;
+    color: var(--kurio-secondary);
+    font: 12px 'Roboto Mono', monospace;
+  }
+
+  .auth-mobile-footer a {
+    color: inherit;
+    text-decoration: none;
+    margin-left: 4px;
+  }
+
+  /* Profile */
+  .profile-page {
+    width: calc(100% - 16px);
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 12px 0 82px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .profile-sidebar {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .profile-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .profile-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(210, 138, 76, 0.45) transparent;
+    scroll-snap-type: x proximity;
+    touch-action: pan-x;
+    padding-bottom: 4px;
+    gap: 8px;
+  }
+
+  .profile-nav::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .profile-nav::-webkit-scrollbar-thumb {
+    background: rgba(210, 138, 76, 0.45);
+    border-radius: 999px;
+  }
+
+  .profile-nav a,
+  .profile-nav button {
+    white-space: nowrap;
+    padding: 10px 12px;
+    min-width: max-content;
+    width: auto;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    border-left: 0;
+    border-radius: 999px;
+  }
+
+  .profile-nav a.active {
+    border-left: 0;
+    border-radius: 999px;
+  }
+
+  .profile-logout {
+    width: auto;
+    margin-top: 10px;
+  }
+
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .profile-panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .profile-field,
+  .profile-input-wrap,
+  .ens-input-group {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .wallet-header-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .wallet-secondary-actions {
+    flex-wrap: wrap;
+  }
+}
