@@ -79,3 +79,21 @@
     margin: 0;
   }
 }
+
+/* Overrides para melhorar a legibilidade da página de detalhes do NFT */
+.nft-overview p, .nft-facts p, .nft-detail-copy p, .nft-review-panel p {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+}
+
+.nft-overview h2, .nft-collection-section h2 {
+  font-size: 1.4rem !important;
+}
+
+.nft-facts strong {
+  font-size: 1.05rem !important;
+}
+
+.nft-price-rating strong {
+  font-size: 1.75rem !important;
+}

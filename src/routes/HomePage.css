@@ -2591,49 +2591,82 @@
 }
 
 .payment-methods label {
-  min-height: 30px;
-  display: flex;
+  position: relative;
+  min-height: 55px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 14px;
+  gap: 10px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border: 1px solid rgba(210, 138, 76, 0.12);
+  border-radius: 14px;
+  color: var(--kurio-ink);
+  background: rgba(36, 22, 18, 0.88);
+  font-size: 14px;
   align-items: center;
-  gap: 7px;
-  padding: 0 7px;
-  border: 1px solid var(--kurio-border);
-  border-radius: 3px;
-  color: var(--kurio-secondary);
-  font-size: 8px;
   cursor: pointer;
 }
 
 .payment-methods label.selected {
-  border-color: var(--kurio-primary);
-  color: var(--kurio-ink);
+  border-color: rgba(210, 138, 76, 0.45);
+  background: rgba(36, 22, 18, 0.96);
+  box-shadow: inset 0 0 0 1px rgba(210, 138, 76, 0.08);
 }
 
 .payment-methods input {
   position: absolute;
+  opacity: 0;
   width: 1px;
   height: 1px;
-  opacity: 0;
 }
 
 .payment-method-icon {
-  display: none;
+  grid-column: 1;
+  grid-row: 1;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(210, 138, 76, 0.16);
+  border-radius: 50%;
+  color: var(--kurio-accent);
+  font-size: 11px;
+}
+
+.payment-method-name {
+  min-width: 0;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .payment-methods label>.payment-method-radio {
-  width: 13px;
-  height: 13px;
-  flex: none;
+  grid-column: 3;
+  grid-row: 1;
+  width: 14px;
+  height: 14px;
+  justify-self: center;
+  align-self: center;
+  border: 1px solid rgba(210, 138, 76, 0.42);
+  border-radius: 50%;
   display: grid;
   place-items: center;
-  margin: 0 auto;
-  border: 1px solid var(--kurio-muted);
-  border-radius: 50%;
-  color: transparent;
+  position: relative;
+}
+
+.payment-method-radio svg {
+  display: none;
 }
 
 .payment-methods input:checked~.payment-method-radio {
-  color: var(--kurio-bg);
+  background: transparent;
   border-color: var(--kurio-primary);
+}
+
+.payment-methods input:checked~.payment-method-radio::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
   background: var(--kurio-primary);
 }
 
