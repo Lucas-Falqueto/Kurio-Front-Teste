@@ -174,7 +174,7 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
             <div className="filter-group network-filter">
               <h2>Rede</h2>
               {dynamicNetworks.map(([network, count]) => (
-                <button key={network} type="button" className={`filter-option ${searchParams.network === network ? 'selected' : ''}`} onClick={() => selectNetwork(network as string)} aria-pressed={searchParams.network === network}><span>{network}</span><span>({count})</span></button>
+                <button key={network} type="button" className={`filter-option ${searchParams.network === network ? 'selected' : ''}`} onClick={() => selectNetwork(network as NonNullable<SearchParams['network']>)} aria-pressed={searchParams.network === network}><span>{network}</span><span>({count})</span></button>
               ))}
             </div>
           </div>
