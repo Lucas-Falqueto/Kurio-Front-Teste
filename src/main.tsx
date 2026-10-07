@@ -6,21 +6,17 @@ import { router } from './router'
 import { queryClient } from './queryClient'
 import './index.css'
 
-async function enableMocking() {
-  const { worker } = await import('./mocks/browser')
-  // `worker.start()` returns a Promise that resolves
-  // once the Service Worker is up and ready to intercept requests.
-  return worker.start({
-    onUnhandledRequest: 'bypass',
-  })
-}
+import { socket } from './api/socket'
+import { mswReadyPromise } from './mocks/init'
 
-enableMocking().then(() => {
-  ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </React.StrictMode>
-  )
-})
+mswReadyPromise.then(() => {
+  socket.connect();
+});
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  </React.StrictMode>
+)

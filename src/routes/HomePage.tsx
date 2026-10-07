@@ -37,8 +37,6 @@ const art = {
   gold: `${FIGMA_ASSETS}/b7cfc.png`,
 }
 
-const categories = [['Arte digital', 17], ['Jogos', 17], ['Colecionáveis', 16]] as const
-const networks = [['Ethereum', 17], ['Polygon', 17], ['Solana', 16]] as const
 
 const categoryValues: Record<string, string> = {
   'Arte digital': 'art',
@@ -64,6 +62,14 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
   const { data, isLoading, isError } = useNFTs(searchParams)
   const visibleProducts = data?.data ?? []
   
+  const categoryCounts: Record<string, number> = data?.meta?.categoryCounts ?? {}
+  const networkCounts: Record<string, number> = data?.meta?.networkCounts ?? {}
+
+  const dynamicCategories = Object.entries(categoryValues)
+    .map(([displayName, internalValue]) => [displayName, categoryCounts[internalValue] || 0] as const)
+    .filter(([_, count]) => count > 0)
+
+  const dynamicNetworks = Object.entries(networkCounts).map(([network, count]) => [network, count] as const)
   // Use Favorites
   const { data: session } = useQuery({
     queryKey: ['session'],
@@ -77,6 +83,14 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
   const [minPrice, setMinPrice] = useState(searchParams.minPrice ?? 0.02)
   const [maxPrice, setMaxPrice] = useState(searchParams.maxPrice ?? 12.3)
   const [filtersOpen, setFiltersOpen] = useState(false)
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && filtersOpen) setFiltersOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [filtersOpen]);
 
   useEffect(() => {
     const openFilters = () => setFiltersOpen(true)
@@ -125,11 +139,11 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
           <h1>SEJA DONO DA<br />CULTURA DIGITAL</h1>
           <p className="hero-description">Descubra NFTs selecionados<br className="mobile-only" /> de criadores do mundo<br className="mobile-only" /> todo.</p>
           <a className="button-primary hero-cta" href="#catalogo">EXPLORAR <ArrowRight size={14} className="mobile-only" style={{ marginLeft: 6 }} /></a>
-          <div className="hero-dots mobile-only" aria-label="Slide 1 de 3"><span className="active" /><span /><span /></div>
+          <div className="hero-dots mobile-only" role="group" aria-label="Slide 1 de 3"><span className="active" /><span /><span /></div>
         </div>
         <div className="hero-images">
-          <img className="hero-art" src={art.hero} alt="Macaco colecionável" />
-          <img className="hero-art-small mobile-only" src={art.sage} alt="Macaco secundário" />
+          <img className="hero-art" src={art.hero} alt="Macaco colecionável" fetchPriority="high" />
+          <img className="hero-art-small mobile-only" src={art.sage} alt="Macaco secundário" fetchPriority="high" />
         </div>
       </section>
 
@@ -141,7 +155,7 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
           <div className="filter-panel">
             <h2>Coleções</h2>
             <div className="filter-list">
-              {categories.map(([category, count]) => (
+              {dynamicCategories.map(([category, count]) => (
                 <button key={category} className={`filter-option ${searchParams.category === categoryValues[category] ? 'selected' : ''}`} onClick={() => selectCategory(category)} aria-pressed={searchParams.category === categoryValues[category]}>
                   <span>{category}</span><span>({count})</span>
                 </button>
@@ -159,8 +173,8 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
             </div>
             <div className="filter-group network-filter">
               <h2>Rede</h2>
-              {networks.map(([network, count]) => (
-                <button key={network} type="button" className={`filter-option ${searchParams.network === network ? 'selected' : ''}`} onClick={() => selectNetwork(network)} aria-pressed={searchParams.network === network}><span>{network}</span><span>({count})</span></button>
+              {dynamicNetworks.map(([network, count]) => (
+                <button key={network} type="button" className={`filter-option ${searchParams.network === network ? 'selected' : ''}`} onClick={() => selectNetwork(network as string)} aria-pressed={searchParams.network === network}><span>{network}</span><span>({count})</span></button>
               ))}
             </div>
           </div>
@@ -174,9 +188,9 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
         <div className="product-area">
           <div className="catalog-toolbar">
             <div className="catalog-tabs" role="tablist" aria-label="Ordenar coleções">
-              <button className={(!searchParams.sort || searchParams.sort === 'newest') ? 'active' : ''} onClick={() => setSort('newest')}>Todos os NFTs</button>
-              <button className={searchParams.sort === 'recent' ? 'active' : ''} onClick={() => setSort('recent')}>Novos lançamentos</button>
-              <button className={searchParams.sort === 'popular' ? 'active' : ''} onClick={() => setSort('popular')}>Em alta</button>
+              <button role="tab" aria-selected={(!searchParams.sort || searchParams.sort === 'newest')} className={(!searchParams.sort || searchParams.sort === 'newest') ? 'active' : ''} onClick={() => setSort('newest')}>Todos os NFTs</button>
+              <button role="tab" aria-selected={searchParams.sort === 'recent'} className={searchParams.sort === 'recent' ? 'active' : ''} onClick={() => setSort('recent')}>Novos lançamentos</button>
+              <button role="tab" aria-selected={searchParams.sort === 'popular'} className={searchParams.sort === 'popular' ? 'active' : ''} onClick={() => setSort('popular')}>Em alta</button>
             </div>
             <label className="sort-control"><span>Ordenar por:</span><select value={searchParams.sort || 'newest'} onChange={(event) => setSort(event.target.value)} aria-label="Ordenar NFTs">
               <option value="newest">Listados recentemente</option><option value="price_asc">Menor preço</option><option value="price_desc">Maior preço</option>
@@ -191,6 +205,7 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
                     <img src={item.image} alt={item.title} loading="lazy" />
                     <button 
                       className={`nft-grid-favorite ${isFav ? 'is-favorite' : ''}`} 
+                      tabIndex={0}
                       onClick={(e) => {
                         e.preventDefault();
                         if (!isAuthenticated) return navigate({ to: '/login' });
@@ -218,11 +233,11 @@ export function HomePage({ searchParams }: { searchParams: SearchParams }) {
 
       <section className="promo-grid" aria-label="Coleções em destaque">
         <article className="promo-card promo-genesis">
-          <img src={art.hero} alt="Arte da coleção Genesis" />
+          <img src={art.hero} alt="Arte da coleção Genesis" loading="lazy" />
           <div><h2>Lançamentos gênesis<br />de edição limitada</h2><p>Colecione edições escassas diretamente dos criadores antes da revelação pública.</p><a className="button-primary" href="#catalogo">Explorar <ArrowRight size={16} /></a></div>
         </article>
         <article className="promo-card promo-curated">
-          <img src={art.ape} alt="Arte digital selecionada" />
+          <img src={art.ape} alt="Arte digital selecionada" loading="lazy" />
           <div><h2>Arte digital selecionada<br />e muito mais</h2><p>Explore novos artistas, coleções verificadas e obras digitais que definem a cultura.</p><a className="button-primary" href="#catalogo">Explorar <ArrowRight size={16} /></a></div>
         </article>
       </section>
@@ -256,9 +271,9 @@ export function MarketplaceHeader() {
     <>
       <header className={`market-header desktop-only ${isAuthPage ? 'hide-on-auth' : ''}`}>
         <div className="header-inner">
-          <Link className="brand" to="/">KURIO</Link>
-          <nav className="main-nav" aria-label="Navegação principal"><Link className={!marketIsActive ? 'active' : ''} to="/">Início</Link><a className={marketIsActive ? 'active' : ''} href="/#catalogo">Mercado</a><a href="/#destaques">Criadores</a><a href="/#diario">Aprenda</a></nav>
-          <div className="header-actions"><button className="icon-button" aria-label="Buscar NFTs" onClick={() => document.getElementById('catalog-search')?.focus()}><Search size={20} /></button><Link className="cart-link" to="/checkout" aria-label={cartCount > 0 ? `Carrinho, ${cartCount} itens` : 'Carrinho vazio'}><ShoppingCart size={22} />{cartCount > 0 && <span className="cart-count" aria-live="polite">{cartCount > 99 ? '99+' : cartCount}</span>}</Link>{session?.user ? <button type="button" className="login-button" onClick={() => logout(undefined, { onSuccess: () => navigate({ to: '/', search: { page: 1 } }) })}><LogOut size={17} aria-hidden="true" /> Sair</button> : <Link className="login-button" to="/login" aria-disabled={isSessionPending}><LogIn size={17} aria-hidden="true" /> Entrar</Link>}</div>
+          <Link className="brand" to="/" aria-label="Kurio Início">KURIO</Link>
+          <nav className="main-nav" aria-label="Navegação principal"><Link className={!marketIsActive ? 'active' : ''} to="/" aria-label="Início">Início</Link><a className={marketIsActive ? 'active' : ''} href="/#catalogo">Mercado</a><a href="/#destaques">Criadores</a><a href="/#diario">Aprenda</a></nav>
+          <div className="header-actions"><button className="icon-button" aria-label="Buscar NFTs" onClick={() => document.getElementById('catalog-search')?.focus()}><Search size={20} /></button><Link className="cart-link" to="/checkout" aria-label={cartCount > 0 ? `Carrinho, ${cartCount} itens` : 'Carrinho vazio'}><ShoppingCart size={22} />{cartCount > 0 && <span className="cart-count" aria-live="polite">{cartCount > 99 ? '99+' : cartCount}</span>}</Link>{session?.user ? <><Link to="/profile" aria-label="Meu perfil"><User size={20} /></Link><button type="button" className="login-button" onClick={() => logout(undefined, { onSuccess: () => navigate({ to: '/', search: { page: 1 } }) })}><LogOut size={17} aria-hidden="true" /> Sair</button></> : <Link className="login-button" to="/login" aria-disabled={isSessionPending}><LogIn size={17} aria-hidden="true" /> Entrar</Link>}</div>
           <input id="catalog-search" className="header-search" aria-label="Buscar NFTs" placeholder="Buscar no marketplace" onKeyDown={(event) => {
             if (event.key === 'Enter') {
               navigate({ search: { search: event.currentTarget.value, page: 1 } })
@@ -285,19 +300,19 @@ export function MarketplaceHeader() {
             )}
             {pathname.startsWith('/nft/') && (
               <div className="mobile-back-header mobile-back-header-transparent">
-                <button onClick={() => history.back()} className="mobile-icon-btn"><ChevronLeft size={20} /></button>
-                <button className="mobile-icon-btn"><Heart size={18} /></button>
+                <button onClick={() => history.back()} className="mobile-icon-btn" aria-label="Voltar"><ChevronLeft size={20} /></button>
+                <button className="mobile-icon-btn" aria-label="Acessar Favoritos"><Heart size={18} /></button>
               </div>
             )}
             {pathname === '/checkout' && (
               <div className="mobile-back-header">
-                <button onClick={() => history.back()} className="mobile-icon-btn"><ChevronLeft size={20} /></button>
+                <button onClick={() => history.back()} className="mobile-icon-btn" aria-label="Voltar"><ChevronLeft size={20} /></button>
                 <h2>Carrinho de NFTs</h2>
               </div>
             )}
             {pathname === '/payment' && (
               <div className="mobile-back-header">
-                <button onClick={() => history.back()} className="mobile-icon-btn"><ChevronLeft size={20} /></button>
+                <button onClick={() => history.back()} className="mobile-icon-btn" aria-label="Voltar"><ChevronLeft size={20} /></button>
                 <h2>Pagamento com carteira</h2>
               </div>
             )}
@@ -310,7 +325,7 @@ export function MarketplaceHeader() {
             <Link to="/" activeProps={{ className: 'active' }}><Home size={22} fill="currentColor" /></Link>
             <button type="button" aria-label="Favoritos"><Heart size={22} /></button>
             <button type="button" className="tab-scan-btn" aria-label="Escanear"><CustomScanIcon size={30} /></button>
-            <Link to="/checkout" className="tab-cart-link" activeProps={{ className: 'active' }}>
+            <Link to="/checkout" className="tab-cart-link" activeProps={{ className: 'active' }} aria-label="Carrinho">
               <ShoppingCart size={22} />
               {cartCount > 0 && <span className="tab-cart-badge">{cartCount}</span>}
             </Link>
@@ -339,7 +354,7 @@ export function MarketplaceFooter() {
   return <footer className="market-footer" id="destaques">
     <div className="footer-benefits">{features.map(([initial, title, text]) => <article className="benefit" key={title}><span>{initial}</span><h3>{title}</h3><p>{text}</p></article>)}<form className="newsletter" onSubmit={(event) => event.preventDefault()}><h3>Antecipe-se ao próximo lançamento</h3><div><input type="email" placeholder="digite seu e-mail..." aria-label="Seu e-mail" /><button>Enviar</button></div><p>Receba lançamentos selecionados, histórias de criadores e novidades do mercado.</p></form></div>
     <div className="footer-brand-band"><strong>KURIO</strong><span>Feito para colecionadores,<br />criadores e cultura</span><a href="mailto:contato@email.com">contato@email.com</a><span>+55 11 4002 8922</span></div>
-    <div className="footer-links">{linkGroups.map(([title, ...links]) => <section key={title}><h3>{title}</h3>{links.map((label) => <a key={label} href={label === 'Meu perfil' ? '/profile' : '#catalogo'}>{label}</a>)}</section>)}<section className="social-links"><h3>Redes sociais</h3><div><a href="#catalogo" aria-label="Instagram">◎</a><a href="#catalogo" aria-label="Twitter">𝕏</a><a href="#catalogo" aria-label="Discord">◉</a><a href="#catalogo" aria-label="YouTube">▶</a></div><h3>Carteiras compatíveis</h3><small>METAMASK · WALLETCONNECT · COINBASE</small></section></div>
+    <div className="footer-links">{linkGroups.map(([title, ...links]) => <section key={title}><h3>{title}</h3>{links.map((label) => <a key={label} href={label === 'Meu perfil' ? '/profile' : '#catalogo'}>{label}</a>)}</section>)}<section className="social-links"><h3>Redes sociais</h3><div><a href="#catalogo" aria-label="Rede Social Instagram">◎</a><a href="#catalogo" aria-label="Rede Social X">𝕏</a><a href="#catalogo" aria-label="Rede Social Discord">◉</a><a href="#catalogo" aria-label="Rede Social YouTube">▶</a></div><h3>Carteiras compatíveis</h3><small>METAMASK · WALLETCONNECT · COINBASE</small></section></div>
     <div className="copyright">© 2024 Kurio. Fique atualizado para toda arte.</div>
   </footer>
 }

@@ -9,6 +9,20 @@ export default defineConfig({
     TanStackRouterVite({ routeFileIgnorePattern: 'HomePage\\.tsx' }),
     react()
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) return 'vendor-react'
+            if (id.includes('@tanstack')) return 'vendor-tanstack'
+            if (id.includes('msw')) return 'vendor-msw'
+            return 'vendor'
+          }
+        }
+      }
+    }
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

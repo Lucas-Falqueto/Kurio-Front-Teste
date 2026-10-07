@@ -5,7 +5,10 @@ export const apiClient = axios.create({
   withCredentials: true,
 });
 
-apiClient.interceptors.request.use((config) => {
+import { mswReadyPromise } from '../mocks/init';
+
+apiClient.interceptors.request.use(async (config) => {
+  await mswReadyPromise;
   const sessionId = typeof window === 'undefined' ? null : window.localStorage.getItem('kurio_session')
   if (sessionId) config.headers.set('X-Session-Id', sessionId)
   return config

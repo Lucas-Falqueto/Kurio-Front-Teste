@@ -131,9 +131,26 @@ export const handlers = [
     const start = (page - 1) * limit;
     const paginated = nfts.slice(start, start + limit);
     
+    const categoryCounts = db.nfts.reduce((acc, nft) => {
+      acc[nft.category] = (acc[nft.category] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const networkCounts = db.nfts.reduce((acc, nft) => {
+      acc[nft.network] = (acc[nft.network] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
     return HttpResponse.json({
       data: paginated,
-      meta: { total: nfts.length, page, limit, totalPages: Math.ceil(nfts.length / limit) }
+      meta: { 
+        total: nfts.length, 
+        page, 
+        limit, 
+        totalPages: Math.ceil(nfts.length / limit),
+        categoryCounts,
+        networkCounts
+      }
     });
   }),
 
@@ -265,7 +282,7 @@ export const handlers = [
       subtotal: totals.subtotal,
       fee: totals.fee,
       discount: totals.discount,
-      status: 'confirmed',
+      status: 'pending', // Initially pending
       createdAt: new Date().toISOString(),
       transactionHash: `0x${crypto.randomUUID().replace(/-/g, '')}${crypto.randomUUID().replace(/-/g, '')}`,
       walletAddress,
@@ -284,6 +301,19 @@ export const handlers = [
     db.orders.push(order);
     db.carts[user.id] = { items: [], subtotal: '0.00', discount: '0.00', fee: '0.00', total: '0.00' };
     saveDB(db);
+    
+    // Simulate async processing
+    setTimeout(async () => {
+      const currentDb = getDB();
+      const currentOrder = currentDb.orders.find(o => o.id === order.id);
+      if (currentOrder) {
+        currentOrder.status = 'confirmed';
+        saveDB(currentDb);
+        
+        // Trigger local window event for the socket bridge
+        window.dispatchEvent(new CustomEvent('mock-socket:order.updated', { detail: { orderId: order.id, status: 'confirmed' } }));
+      }
+    }, 2000);
     
     return HttpResponse.json(order);
   }),

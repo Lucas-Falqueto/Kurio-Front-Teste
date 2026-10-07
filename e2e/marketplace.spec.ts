@@ -124,7 +124,7 @@ test.describe('NFT Marketplace E2E', () => {
 
     // 6. Verify Order Receipt
     await page.waitForURL(/\/order\/.+/);
-    await expect(page.locator('h1', { hasText: 'Seu pedido foi recebido.' })).toBeVisible();
+    await expect(page.locator('h1', { hasText: 'Seu pedido foi recebido.' })).toBeVisible({ timeout: 10000 });
   });
 
   test('should update profile display name', async ({ page }) => {

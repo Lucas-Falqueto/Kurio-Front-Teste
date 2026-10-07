@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { apiClient } from '@/api/client'
-import { X } from 'lucide-react'
+import { X, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { fetchNFTDetail } from '@/features/nfts/api/nftApi'
 import type { OrderItem } from '@/api/types'
+import { useEffect } from 'react'
+import { subscribeToEvents } from '@/api/socket'
 
 const ThankYouIcon = () => (
+// ... keep existing SVG ...
   <svg width="66" height="80" viewBox="0 0 66 80" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'var(--kurio-primary)', margin: '0 auto' }}>
     <path d="M29.28 25.9317C29.884 26.1624 30.5617 25.8588 30.7922 25.2536L31.1851 24.2217H33.9576L34.3458 25.2503C34.5228 25.7195 34.9687 26.0088 35.4423 26.0088C35.5798 26.0088 35.7197 25.9844 35.8559 25.933C36.4614 25.7045 36.767 25.0284 36.5384 24.4228L33.8309 17.2483C33.827 17.2378 33.8228 17.227 33.8186 17.2167C33.6117 16.7133 33.1264 16.3881 32.5822 16.3881C32.5819 16.3881 32.5815 16.3881 32.5812 16.3881C32.0365 16.3884 31.5512 16.7144 31.345 17.2183C31.3414 17.2273 31.3376 17.2361 31.3344 17.2453L28.602 24.4195C28.3715 25.0242 28.6751 25.7013 29.28 25.9317ZM33.0731 21.8781H32.0778L32.5776 20.5656L33.0731 21.8781Z" fill="currentColor"/>
     <path d="M38.9121 26.0085C39.5595 26.0085 40.084 25.4839 40.084 24.8366V21.3327L42.8588 25.3508C43.1926 25.8333 43.7537 26.0377 44.2884 25.8708C44.8319 25.7013 45.183 25.1989 45.183 24.58L45.1151 17.5486C45.1088 16.9053 44.5854 16.388 43.9435 16.388C43.9396 16.388 43.9357 16.388 43.932 16.388C43.2846 16.3942 42.7651 16.9241 42.7713 17.5711L42.806 21.1497L39.8765 16.9075C39.5851 16.4855 39.0535 16.3024 38.5634 16.4547C38.0738 16.6074 37.7402 17.0606 37.7402 17.5735V24.8364C37.7402 25.4839 38.2648 26.0085 38.9121 26.0085Z" fill="currentColor"/>
@@ -35,6 +38,19 @@ export const Route = createFileRoute('/order/$id')({
 
 function OrderReceiptRoute() {
   const { id } = Route.useParams()
+  const queryClient = useQueryClient()
+  
+  useEffect(() => {
+    const unsubscribe = subscribeToEvents({
+      onOrderUpdated: (data) => {
+        if (data.orderId === id) {
+          queryClient.invalidateQueries({ queryKey: ['orders', id] })
+        }
+      }
+    })
+    return unsubscribe
+  }, [id, queryClient])
+
   const { data: order, isLoading } = useQuery({
     queryKey: ['orders', id],
     queryFn: async () => {
@@ -46,6 +62,27 @@ function OrderReceiptRoute() {
   if (isLoading) return <div className="marketplace-screen"><div className="screen-skeleton" /></div>
   
   if (!order) return <div className="marketplace-screen not-found-page"><h1>Pedido não encontrado</h1><p>Não foi possível localizar este recibo.</p></div>
+
+  if (order.status === 'pending') {
+    return (
+      <div className="marketplace-screen pending-page" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '4rem 1rem' }}>
+        <Loader2 className="animate-spin" size={48} style={{ color: 'var(--kurio-primary)', marginBottom: '1.5rem' }} />
+        <h1>Processando pagamento...</h1>
+        <p>Aguardando a confirmação da rede. Isso pode levar alguns segundos.</p>
+      </div>
+    )
+  }
+
+  if (order.status === 'failed') {
+    return (
+      <div className="marketplace-screen pending-page" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '4rem 1rem' }}>
+        <div style={{ color: 'red', marginBottom: '1.5rem' }}><X size={48} /></div>
+        <h1>Falha na transação</h1>
+        <p>Houve um erro ao processar o seu pagamento.</p>
+        <Button asChild className="mt-6"><Link to="/checkout">Voltar ao Carrinho</Link></Button>
+      </div>
+    )
+  }
 
   const itemSubtotal = Number(order.subtotal ?? order.items.reduce((total: number, item: { price: string; quantity: number }) => total + Number(item.price) * item.quantity, 0).toFixed(2))
   const networkFee = Number(order.fee ?? Math.max(0, Number(order.total) - itemSubtotal).toFixed(2))

@@ -121,7 +121,7 @@ function ProfileIndexRoute() {
           <label>Senha atual</label>
           <div className="profile-input-wrap profile-input-wrap-password">
             <input type="password" {...passwordForm.register('currentPassword')} />
-            <button className="auth-password-toggle" type="button"><EyeOff size={16} /></button>
+            <button className="auth-password-toggle" type="button" aria-label="Alternar visibilidade da senha"><EyeOff size={16} /></button>
           </div>
           {passwordForm.formState.errors.currentPassword && <span className="profile-error">{passwordForm.formState.errors.currentPassword.message}</span>}
         </div>
@@ -129,7 +129,7 @@ function ProfileIndexRoute() {
           <label>Nova senha</label>
           <div className="profile-input-wrap profile-input-wrap-password">
             <input type="password" {...passwordForm.register('newPassword')} />
-            <button className="auth-password-toggle" type="button"><EyeOff size={16} /></button>
+            <button className="auth-password-toggle" type="button" aria-label="Alternar visibilidade da senha"><EyeOff size={16} /></button>
           </div>
           {passwordForm.formState.errors.newPassword && <span className="profile-error">{passwordForm.formState.errors.newPassword.message}</span>}
         </div>
@@ -137,7 +137,7 @@ function ProfileIndexRoute() {
           <label>Confirmar nova senha</label>
           <div className="profile-input-wrap profile-input-wrap-password">
             <input type="password" {...passwordForm.register('confirmPassword')} />
-            <button className="auth-password-toggle" type="button"><EyeOff size={16} /></button>
+            <button className="auth-password-toggle" type="button" aria-label="Alternar visibilidade da senha"><EyeOff size={16} /></button>
           </div>
           {passwordForm.formState.errors.confirmPassword && <span className="profile-error">{passwordForm.formState.errors.confirmPassword.message}</span>}
         </div>
