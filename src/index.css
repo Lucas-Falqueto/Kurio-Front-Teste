@@ -70,6 +70,9 @@
   * {
     @apply border-border;
   }
+  html {
+    font-size: 110%; /* Aumenta a base (rem) de 16px para ~17.6px */
+  }
   body {
     @apply bg-background text-foreground;
     min-width: 320px;
