@@ -25,7 +25,12 @@ Servidor de Desenvolvimento (com MSW ativado automaticamente):
 npm run dev
 ```
 
-Verificação de Tipos e Linting:
+Verificação de Tipos:
+```bash
+npm run typecheck
+```
+
+Linting:
 ```bash
 npm run lint
 ```
